@@ -63,7 +63,7 @@ angular.module('mcnedward')
 		form.$setUntouched();
 		clearAppError();
 		
-		reCaptchaService.verify(iiAppInfo.recaptchaResponse, downloadApp, showAppError);
+		recaptchaService.verify(iiAppInfo.recaptchaResponse, downloadApp, showAppError);
 	}
 	$scope.downloadIILib = function(form, iiLibInfo) {
 		if ($scope.isLibFormSubmitted) return;
@@ -74,7 +74,7 @@ angular.module('mcnedward')
 		form.$setUntouched();
 		clearLibError();
 
-		reCaptchaService.verify(iiLibInfo.recaptchaResponse, downloadLib, showLibError);
+		recaptchaService.verify(iiLibInfo.recaptchaResponse, downloadLib, showLibError);
 	}
 	
 }]);

@@ -9,43 +9,43 @@ var app = angular.module('mcnedward', ['ui.router', 'ui.bootstrap', 'ngAnimate',
       title: 'Edward McNealy'
     })
 		.state('ii', {
-			url: '/inheritance-inquiry',
+			url: '/inheritance-inquiry/',
 			templateUrl: 'ii/ii.html',
 			controller: 'IICtrl',
 			title: 'Inheritance Inquiry'
 		})
 		.state('bramble', {
-			url: '/bramble',
-			templateUrl: 'js/components/bramble/bramble.html',
+			url: '/bramble/',
+			templateUrl: 'bramble/bramble.html',
 			title: 'Bramble'
 		})
 		.state('keepfit', {
-			url: '/keepfit',
-			templateUrl: 'js/components/keepfit/keepfit.html',
+			url: '/keepfit/',
+			templateUrl: 'keepfit/keepfit.html',
 			title: 'KeepFit'
 		})
 		.state('parser', {
-			url: '/parser',
-			templateUrl: 'js/components/parser/parser.html',
+			url: '/parser/',
+			templateUrl: 'parser/parser.html',
 			controller: 'ParserCtrl',
 			title: 'Parser'
 		})
 		.state('blackjack', {
-			url: '/blackjack',
-			templateUrl: 'js/components/blackjack/blackjack.html',
+			url: '/blackjack/',
+			templateUrl: 'blackjack/blackjack.html',
 			controller: 'BlackjackCtrl',
 			title: 'Blackjack'
 		})
 		.state('numberPrinter', {
-			url: '/numberprinter',
-			templateUrl: 'js/components/numberPrinter/numberPrinter.html',
+			url: '/numberprinter/',
+			templateUrl: 'numberPrinter/numberPrinter.html',
 			controller: 'NumberPrinterCtrl',
 			title: 'Number Printer'
 		});
 
 	$urlRouterProvider.otherwise('/');
   $urlRouterProvider.when(/ii/, ['$state','$match', function ($state, $match) {
-          $state.go('ii');
+    $state.go('ii');
   }]);
 
 	$locationProvider.html5Mode(true);

@@ -1,0 +1,57 @@
+<div class="container text-center">
+	<h2>Parser</h2>
+	<p class="mb-1">Quickly jump to method and variable definitions in your Java projects</p>
+	<p class="mb-2 small">None of your files will be saved or edited, they are simply analyzed using <a href="https://github.com/javaparser/javaparser">JavaParser</a>. They will be kept in local storage on your browser so you don't need to upload again after leaving.</p>
+	<div>
+		<label for="file-upload" class="ed-file-upload">
+			<i class="glyphicon glyphicon-upload"></i> {{fileUploadMessage}}
+		</label>
+		<input id="file-upload" type="file" size="50" multiple webkitdirectory directory/>
+	</div>
+	<br/>
+	<div>
+		<drag-and-drop class="drag-and-drop"></drag-and-drop>
+	</div>
+		
+	<br/>
+	<form data-ngForm name="form" novalidate data-ng-show="fileSelected">
+		<div class="ii-recaptcha mb-1" vc-recaptcha data-ng-model="uploadInfo.recaptchaResponse" key="'6LcIzQgUAAAAAAtgSLJ84VTOI7wXEuSZquyasLoQ'"></div>
+		<div data-ng-show="form.$submitted || form.recaptcha" class="text-danger text-center mb-1">You need to complete the reCaptcha!</div>
+		<span class="ebtn upload-button" data-ng-click="uploadFile(form, uploadInfo)"
+			data-ng-class="isFormSubmitted ? 'ebtn-disabled' : 'ebtn-green'">Upload {{fileName}}</span>
+	</form>
+	
+	<h3 class="error">{{errorMessage}}</h3>
+</div>
+<div class="class-container"> <!--data-ng-show="classObjects">-->
+	<div id="classStructure" class="class-structure">
+		<uib-tabset active="activeJustified" justified="true">
+			<uib-tab index="0" heading="Analysis">
+				<div class="class-structure-container" data-ng-show="isParsingComplete">
+					<h4 class="structure-title">Methods</h4>
+					<div class="structure-content" data-ng-repeat="method in classObject.methods track by $index"
+						data-ng-click="moveToLine(method)">
+						{{method.methodName}}
+					</div>
+					<h4 class="structure-title">Variables</h4>
+					<div class="structure-content" data-ng-repeat="variable in classObject.variables track by $index"
+						data-ng-click="moveToLine(variable)">
+						{{variable.variableName}}
+					</div>
+					<div class="structure-content" data-ng-repeat="s in stuff track by $index">
+						{{s}}
+					</div>
+				</div>
+			</uib-tab>
+			<uib-tab index="1" heading="Files">
+				<div class="class-structure-container">
+					<directory name="directory.name" id="directory.id"
+					directories="directory.directories" classes="directory.classes"></directory>
+				</div>
+			</uib-tab>
+		</uib-tabset>
+	</div>
+	<div id="classContentContainer" class="class-content">
+		<pre id="classContent"></pre>
+	</div>
+</div>

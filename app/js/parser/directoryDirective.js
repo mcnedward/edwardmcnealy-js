@@ -29,6 +29,6 @@ angular.module('mcnedward')
 			scope.isRealDirectory = scope.name != null && scope.name !== "";
 			scope.showContents = false;
 		},
-		templateUrl: 'app/components/parser/directory.html'
+		templateUrl: 'parser/directory.html'
 	};
 }]);

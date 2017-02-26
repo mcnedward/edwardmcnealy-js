@@ -1,0 +1,20 @@
+<div>
+	<div class="directory-container" data-ng-show="isRealDirectory">
+		<span class="ebtn ebtn-gray directory-button" data-ng-click="showContents=!showContents">
+			{{name}}    <i class="glyphicon directory-icon" data-ng-class="showContents ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down'"></i>
+		</span>
+	</div>
+	<div ng-if="showContents || !isRealDirectory" class="animation">
+		<div data-ng-repeat="d in directories track by $index" class="directory-container"
+		data-ng-class="{'directory-indent': isRealDirectory}">
+			<directory name="d.name" id="d.id"
+			directories="d.directories" classes="d.classes"></directory>
+		</div>
+		<div data-ng-repeat="c in classes track by $index" class="directory-container"
+		data-ng-class="{'directory-indent': isRealDirectory}">
+			<span class="ebtn ebtn-blue file-button" data-ng-click="selectClass(id, c.id)">
+				{{c.fileName}}
+			</span>
+		</div>
+	</div>
+</div>

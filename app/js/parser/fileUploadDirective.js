@@ -205,6 +205,6 @@ angular.module('mcnedward')
 				}
 			});
 		},
-		templateUrl: 'app/components/parser/fileUpload.html'
+		templateUrl: 'parser/fileUpload.html'
 	};
 }]);

@@ -17,6 +17,6 @@ angular.module('mcnedward')
 		},
 		link: function(scope, element, attrs) {
 		},
-		templateUrl: 'app/components/parser/structure.html'
+		templateUrl: 'parser/structure.html'
 	};
 }]);

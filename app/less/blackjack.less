@@ -1,0 +1,137 @@
+#blackjackApp {
+	margin: 0 auto;
+}
+#blackjackApp div, span, img {
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+}
+#blackjack-message {
+	margin:0 auto;
+	height: 45px;
+}
+
+.b-table {
+	background-color: green;
+	padding: 10px;
+	text-align: center;
+	border: solid #803A15 5px;
+}
+.o-table {
+	background-color: red;
+	position: relative;
+	height: 110px;
+}
+.b-table-info {
+	font-weight: bold;
+	margin: 5px;
+	color: white;
+}
+.b-table-info-num {
+	color: cornflowerblue;
+}
+.b-table-info-win {
+	color: orange;
+}
+.b-table-info-loss {
+	color: red;
+}
+.b-table-info-money {
+	color: yellow;
+}
+.b-table-info-bet {
+	color: purple;
+}
+.b-table-bet {
+	border-top: black solid 2px;
+}
+.b-table-bet-chip {
+	width: 100%;
+	margin: 0 auto;
+}
+.b-table-bet-btn .ebtn {
+	min-width: 50%;
+}
+.b-table-bet-btn {
+	width: 100%;
+	display: block;
+}
+@media all and (min-width: 750px) {
+	.b-table-bet-btn .ebtn {
+		min-width: 30%;
+	}
+}
+@media all and (max-width: 750px) {
+	.b-table-bet-btn {
+		display: inline-block;
+		line-height: 64px;
+	}
+}
+@media all and (max-width: 450px) {
+	.b-table-bet-chip {
+		width: 70%;
+	}
+}
+@media all and (max-width: 375px) {
+	.b-table-bet-chip {
+		width: 80%;
+	}
+}
+@media all and (max-width: 350px) {
+	.b-table-bet-chip {
+		width: 100%;
+	}
+}
+
+/********** BETTING **********/
+.chip {
+	width: 64px;
+	height: 64px;
+	line-height: 64px;
+	vertical-align: top;
+	display: inline-block;
+	margin-top: 5px;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+.chip-5 {
+	background: url("../img/blackjack/chips/chip5.png") no-repeat;
+}
+.chip-10 {
+	background: url("../img/blackjack/chips/chip10.png") no-repeat;
+}
+.chip-25 {
+	background: url("../img/blackjack/chips/chip25.png") no-repeat;
+}
+.chip-100 {
+	background: url("../img/blackjack/chips/chip100.png") no-repeat;
+}
+.chip-500 {
+	background: url("../img/blackjack/chips/chip500.png") no-repeat;
+}
+.clear-bet {
+	color: white;
+	background-color: blue;
+}
+#startCards {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	cursor: pointer;
+}
+#options {
+	width: 100%;
+	display: none;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.empty-card {
+	visibility: hidden;
+	height: 80px;
+}
+.card-img {
+	height: 80px;
+}

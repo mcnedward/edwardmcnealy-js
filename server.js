@@ -31,7 +31,7 @@ app.use('/js/jquery', express.static(modules + 'jquery/dist/jquery' + jsExt));
 app.use('/js/angular', express.static(modules + 'angular/angular' + jsExt));
 app.use('/js/angular-ui-router', express.static(modules + 'angular-ui-router/release/angular-ui-router' + jsExt));
 app.use('/js/angular-animate', express.static(modules + 'angular-animate/angular-animate' + jsExt));
-app.use('/js/ui-bootstrap', express.static(modules + 'angular-ui-bootstrap/dist/ui-bootstrap' + jsExt));
+app.use('/js/ui-bootstrap', express.static(modules + 'angular-ui-bootstrap/dist/ui-bootstrap-tpls' + jsExt));
 app.use('/js/angular-recaptcha', express.static(modules + 'angular-recaptcha/release/angular-recaptcha' + jsExt));
 app.use('/js/knockout', express.static(modules + 'knockout/build/output/knockout-latest' + jsExt));
 app.use('/js/moment', express.static(modules + 'moment/min/moment' + jsExt));
