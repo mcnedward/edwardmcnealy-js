@@ -20,6 +20,9 @@
   <script src="js/angular-animate"></script>
   <script src="js/ui-bootstrap"></script>
   <script src="js/angular-recaptcha"></script>
+  <script src="js/knockout"></script>
+  <script src="js/moment"></script>
+  <script src="js/moment-timezone"></script>
   <script src="js/app.js"></script>
   <script src="js/services/userService.js"></script>
   <script src="js/services/requestService.js"></script>
@@ -36,6 +39,14 @@
   <script src="js/parser/fileUploadDirective.js"></script>
   <script src="js/parser/parserService.js"></script>
   <script src="js/parser/parserController.js"></script>
+  <script src="js/colorZones/models/latLng.js"></script>
+  <script src="js/colorZones/models/polygon.js"></script>
+  <script src="js/colorZones/models/timeZone.js"></script>
+  <script src="js/colorZones/colorPicker.js"></script>
+  <script src="js/colorZones/colorZones.js"></script>
+  <script src="js/colorZones/renderer.js"></script>
+  <script src="js/colorZones/timeZoneService.js"></script>
+  <script src="js/colorZones/tooltipService.js"></script>
   <script src="js/blackjack/blackjackService.js"></script>
   <script src="js/blackjack/playerService.js"></script>
   <script src="js/blackjack/blackjackController.js"></script>
@@ -65,7 +76,7 @@
 			  <div class="text-center text-md-left"><a href="/">HOME</a></div>
 			</div>
 		</nav>
-    <div class="wrapper container">
+    <div class="wrapper" data-ng-class="{'container-fluid': useContainerFluid, container: !useContainerFluid}">
 			<div data-ui-view></div>
 			<div class="push"></div>
 		</div>

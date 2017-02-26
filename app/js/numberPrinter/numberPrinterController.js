@@ -6,44 +6,43 @@ angular.module('mcnedward')
 .controller('NumberPrinterCtrl', ['$rootScope', '$scope', '$window', 'requestService',
 	function NumberPrinterCtrl($rootScope, $scope, $window, requestService) {
 	
-	$scope.number = {};
+  $scope.result = '';
+
 	$scope.convertToEnglish = function() {
-		clearText();
-		var number = $scope.number.search;
-		if (number == '') {
-			$scope.errorMessage = 'You need to enter something!';
-			return;
-		}
-		requestService.sendRequest('/numberprinter/convert?number=' + number, 'POST').then(
-			function(response) {
-				var englishWord = response.data.entity.englishWord;
-				$scope.result = englishWord;
-			},
-			function(error) {
-				var errorMessage = error.data.errors[0];
-				$scope.errorMessage = errorMessage;
-			}
-		);
+		convert((json) => {
+      $scope.result = json.englishWord;
+      $scope.$apply();
+    });
 	}
 	
 	$scope.convertToRomanNumeral = function() {
-		clearText();
-		var number = $scope.number.search;
+    convert((json) => {
+      $scope.result = json.romanNumeral;
+      $scope.$apply();
+    });
+	}
+
+  function convert(callback) {
+    clearText();
+		var number = $scope.number;
 		if (number == '') {
 			$scope.errorMessage = 'You need to enter something!';
 			return;
 		}
-		requestService.sendRequest('/numberprinter/convert?number=' + number, 'POST').then(
-			function(response) {
-				var romanNumeral = response.data.entity.romanNumeral;
-				$scope.result = romanNumeral;
-			},
-			function(error) {
-				var errorMessage = error.data.errors[0];
-				$scope.errorMessage = errorMessage;
-			}
-		);
-	}
+    return fetch('/api/number-printer/convert?number=' + number).then((response) => {
+      if (response.ok) {
+        response.json().then(callback);
+        return;
+      }
+      response.text().then((text) => {
+        $scope.errorMessage = text;
+        $scope.$apply();
+      });
+    }).catch((error) => {
+      $scope.errorMessage = error;
+      $scope.$apply();
+    });
+  }
 	
 	function clearText() {
 		$scope.result = '';

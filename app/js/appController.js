@@ -28,9 +28,9 @@ angular.module('mcnedward')
 					$(this).scrollTop(0);
 					$rootScope.hideMainImg = true;
 				}
-				if (toState.name === 'parser')
-					$rootScope.isParser = true;
-				
+        $rootScope.isParser = toState.name === 'parser';
+        $rootScope.useContainerFluid = toState.name === 'colorZones';
+
 				// Update Google Analytics
 				ga('set', 'page', toState.name === 'app' ? '/index.html' : toState.url + '.html');
 				ga('send', 'pageview');

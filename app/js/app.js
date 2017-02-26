@@ -14,6 +14,17 @@ var app = angular.module('mcnedward', ['ui.router', 'ui.bootstrap', 'ngAnimate',
 			controller: 'IICtrl',
 			title: 'Inheritance Inquiry'
 		})
+		.state('parser', {
+			url: '/parser/',
+			templateUrl: 'parser/parser.html',
+			controller: 'ParserCtrl',
+			title: 'Parser'
+		})
+		.state('colorZones', {
+			url: '/color-zones/',
+			templateUrl: 'colorZones/colorZones.html',
+			title: 'Color Zones'
+		})
 		.state('bramble', {
 			url: '/bramble/',
 			templateUrl: 'bramble/bramble.html',
@@ -23,12 +34,6 @@ var app = angular.module('mcnedward', ['ui.router', 'ui.bootstrap', 'ngAnimate',
 			url: '/keepfit/',
 			templateUrl: 'keepfit/keepfit.html',
 			title: 'KeepFit'
-		})
-		.state('parser', {
-			url: '/parser/',
-			templateUrl: 'parser/parser.html',
-			controller: 'ParserCtrl',
-			title: 'Parser'
 		})
 		.state('blackjack', {
 			url: '/blackjack/',

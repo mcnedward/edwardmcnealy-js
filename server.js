@@ -50,10 +50,6 @@ app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({type:'application/json'}));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/index.html'));
-})
-
 // API Endpoints
 app.get('/api/map', function(req, res) {
   var centerLat = req.query.centerLat,
@@ -76,6 +72,19 @@ app.get('/api/polygons/:zone', function(req, res) {
 app.get('/api/hover-regions', function(req, res) {
   var fileName = __dirname + '/tz_json/hover_regions.json';
   fileResponse(req, res, fileName);
+})
+app.get('/api/number-printer/convert', (req, res) => {
+  var number = req.query.number;
+  var result = {
+    'englishWord': 'one',
+    'romanNumeral': 'I'
+  };
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify(result));
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/index.html'));
 })
 
 function fileResponse(req, res, fileName) {
