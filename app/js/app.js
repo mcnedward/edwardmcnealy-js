@@ -5,12 +5,12 @@ var app = angular.module('mcnedward', ['ui.router', 'ui.bootstrap', 'ngAnimate',
 	$stateProvider
     .state('app', {
       url: '/',
-      templateUrl: 'home',
+      templateUrl: 'core/home.html',
       title: 'Edward McNealy'
     })
 		.state('ii', {
 			url: '/inheritance-inquiry',
-			templateUrl: 'js/components/ii/iiMain.html',
+			templateUrl: 'ii/ii.html',
 			controller: 'IICtrl',
 			title: 'Inheritance Inquiry'
 		})
@@ -44,8 +44,37 @@ var app = angular.module('mcnedward', ['ui.router', 'ui.bootstrap', 'ngAnimate',
 		});
 
 	$urlRouterProvider.otherwise('/');
-	$urlRouterProvider.when('/ii', '/inheritance-inquiry');
+  $urlRouterProvider.when(/ii/, ['$state','$match', function ($state, $match) {
+          $state.go('ii');
+  }]);
 
 	$locationProvider.html5Mode(true);
 
+}]);
+app.run([function() {
+	$(document).ready(function() {
+		$(document).on('focus.material', '.form-group-material .form-control:input', function (e) {
+		    var $formGroup = $(e.target);
+		    if (!$formGroup.hasClass('touched')) {
+		      $formGroup.addClass('touched');
+		    }
+		});
+
+		$(document).on('focusout.material', '.form-group-material .form-control:input', function (e) {
+		    var $formGroup = $(e.target);
+		    if ($formGroup.val() === '') {
+		      $formGroup.removeClass('touched');
+		    }
+		    if ($formGroup.hasClass('dirty') && $formGroup.val() === '') {
+		      $formGroup.removeClass('dirty');
+		    }
+		});
+
+		$(document).on('keydown.material', '.form-group-material .form-control:input', function (e) {
+			var $formGroup = $(e.target);
+			if (!$formGroup.hasClass('dirty') && $formGroup.val() !== '') {
+				$formGroup.addClass('dirty');
+			}
+		});
+	});
 }]);

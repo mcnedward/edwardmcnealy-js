@@ -3,8 +3,8 @@
  */
 'use strict';
 angular.module('mcnedward')
-.controller('IICtrl', ['$rootScope', '$scope', '$window', 'requestService', 'reCaptchaService', 'modalService',
-	function IICtrl($rootScope, $scope, $window, requestService, reCaptchaService, modalService) {
+.controller('IICtrl', ['$rootScope', '$scope', '$window', 'requestService', 'recaptchaService', 'modalService',
+	function IICtrl($rootScope, $scope, $window, requestService, recaptchaService, modalService) {
 	
 	$scope.iiInfo = {};
 	$scope.isFormSubmitted = false;

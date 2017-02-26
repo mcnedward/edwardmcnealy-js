@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var fs = require('fs');
 var bodyParser = require('body-parser');
+var path = require('path');
 global.environment = 'dev';
 const mapboxAccessToken = "pk.eyJ1IjoiZWR3YXJkbWNuZWFseSIsImEiOiJjaXo3bmszcG0wMGZzMzNwZGd2d2szdmZqIn0.1ycNDtJkOf2K0bBa6tG04g";
 
@@ -37,37 +38,20 @@ app.use('/js/moment', express.static(modules + 'moment/min/moment' + jsExt));
 app.use('/js/moment-timezone', express.static(modules + 'moment-timezone/builds/moment-timezone-with-data' + jsExt));
 app.use('/css/tether', express.static(modules + 'tether/dist/css/tether' + cssExt)); 
 app.use('/css/bootstrap', express.static(modules + 'bootstrap/dist/css/bootstrap' + cssExt)); 
-app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+app.use('/css', express.static(modules + 'bootstrap/dist/css'));
 
 // Views
-app.use(express.static('views'));
-app.use('/views', express.static(__dirname + '/app/views/'))
+app.use(express.static(path.join(__dirname, './views')));
 
 // Images
-app.use('/img', express.static(__dirname + '/public/img'));
+app.use('/img', express.static(path.join(__dirname, './public/img')));
 
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({type:'application/json'}));
 
-// Front-end Routes
-app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/views/index.html');
-})
-app.get('/info', function(req, res) {
-  res.sendFile(__dirname + '/views/core/info.html');
-})
-app.get('/home', function(req, res) {
-  res.sendFile(__dirname + '/views/core/home.html');
-})
-app.get('/portfolio', function(req, res) {
-  res.sendFile(__dirname + '/views/core/portfolio.html');
-})
-app.get('/specs', function(req, res) {
-  res.sendFile(__dirname + '/views/core/specs.html');
-})
-app.get('/contact', function(req, res) {
-  res.sendFile(__dirname + '/views/core/contact.html');
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/index.html'));
 })
 
 // API Endpoints

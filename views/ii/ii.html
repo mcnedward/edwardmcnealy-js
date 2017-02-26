@@ -1,0 +1,85 @@
+<div class="portfolio-main">
+	<h2 class="text-center">Inheritance Inquiry</h2>
+	<p class="text-center mb-3">An open-source application for analyzing Java projects using established software code metrics</p>
+	
+	<div class="row">
+		<div class="col-sm-12 col-md-6">
+			<img src="img/ii/ii.png" class="img-fluid img-center img-shadow mb-3" alt="Inheritance Inquiry"/>
+		</div>
+		<div class="col-sm-12 col-md-6 p-t-1">
+			<ul>
+				<li>Analyze a local project, or download one from GitHub.</li>
+				<li>Inspects your code to find Depth of Inheritance Tree, Number of Children, Weighted Method Count, and the full inheritance hierarchies of your classes.</li>
+				<li>Generate graphs to display information on the hierarchy structures of classes in your code.</li>
+				<li>Export graphs or Excel ready sheets containing information gathered from code metrics.</li>
+			</ul>
+		</div>
+	</div>
+	
+	<hr/>
+	<div class="text-center row">
+		<div class="col-xs-12 col-md-6"><span class="ebtn ebtn-green col-md-12" data-ng-click="openDownloadForApp()">Download the app!</span></div>
+		<div class="col-xs-12 col-md-6"><span class="ebtn ebtn-green col-md-12" data-ng-click="openDownloadForLib()">Download the library!</span></div>
+	</div>
+	<hr/><br/>
+	
+	<p class="mb-3">The application is built using a library containing services that are used to parse your code, analyze the project using the code metrics, and finally produce the graphs or Excel sheets. You can find both the full app and the library on GitHub, where you can download the source for either. With the library, you can use the builders and services to further customize the ways you analyze your projects.</p>
+	<div class="row text-center">
+		<div class="col-md-6">
+			<a href="https://github.com/mcnedward/inheritance-inquiry.git">Inheritance Inquiry App</a>
+		</div>
+		<div class="col-md-6">
+			<a href="https://github.com/mcnedward/inheritance-inquiry-lib.git">Inheritance Inquiry Library</a>
+		</div>
+	</div>
+	<hr/><br/>
+	
+	<h3 class="text-center mb-3">Customize!</h3>
+	<div class="row">
+		<div class="col-sm-12 col-md-6 mb-3">
+			<img src="img/ii/blueDit.png" class="img-fluid img-shadow" alt="DIT"/>
+		</div>
+		<div class="col-sm-12 col-md-6 mb-3">
+			<img src="img/ii/greenHierarchy.png" class="img-fluid img-shadow" alt="Hierarchy"/>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12 col-md-6 mb-3">
+			<img src="img/ii/orangeHierarchy.png" class="img-fluid img-shadow" alt="Hierarchy"/>
+		</div>
+		<div class="col-sm-12 col-md-6 mb-3">
+			<img src="img/ii/purpleNoc.png" class="img-fluid img-shadow" alt="NOC"/>
+		</div>
+	</div>
+</div>
+<div class="md-modal md-effect-1 download-modal" id="downloadAppModal">
+   	<div class="md-content container-fluid text-xs-center">
+	   	<span class="btn btn-sm ebtn-red cancel-btn pull-right">X</span>
+	   	<h3 class="mb-1">Inheritance Inquiry App Download</h3>
+	   	
+	   	<p>The download needs to open in a new window, so make sure you enable pop-ups.</p>
+	   	<p data-ng-show="showAppError" class="appError">{{error}}</p>
+	   	<form data-ngForm name="appForm" novalidate>
+			<div class="ii-recaptcha mb-1" vc-recaptcha data-ng-model="iiAppInfo.recaptchaResponse" key="'6LcIzQgUAAAAAAtgSLJ84VTOI7wXEuSZquyasLoQ'"></div>
+			<div data-ng-show="appForm.$submitted || appForm.recaptcha" class="text-danger text-xs-center mb-1">You need to complete the reCaptcha!</div>
+			<span class="ebtn ebtn-lg mb-1" data-ng-class="isAppFormSubmitted ? 'ebtn-disabled' : 'ebtn-green'" data-ng-click="downloadIIApp(appForm, iiAppInfo)">Download!</span>
+		</form>
+	</div>
+</div>
+<div class="md-overlay" id="overlay-downloadAppModal"></div><!-- the overlay element -->
+
+<div class="md-modal md-effect-1 download-modal" id="downloadLibModal">
+   	<div class="md-content container-fluid text-xs-center">
+	   	<span class="btn btn-sm ebtn-red cancel-btn pull-right">X</span>
+	   	<h3 class="mb-1">Inheritance Inquiry Library Download</h3>
+	   	
+	   	<p>The download needs to open in a new window, so make sure you enable pop-ups.</p>
+	   	<p data-ng-show="showLibError" class="libError">{{error}}</p>
+	   	<form data-ngForm name="libForm" novalidate>
+			<div class="ii-recaptcha mb-1" vc-recaptcha data-ng-model="iiLibInfo.recaptchaResponse" key="'6LcIzQgUAAAAAAtgSLJ84VTOI7wXEuSZquyasLoQ'"></div>
+			<div data-ng-show="libForm.$submitted || libForm.recaptcha" class="text-danger text-xs-center mb-1">You need to complete the reCaptcha!</div>
+			<span class="ebtn ebtn-lg mb-1" data-ng-class="isLibFormSubmitted ? 'ebtn-disabled' : 'ebtn-green'" data-ng-click="downloadIILib(libForm, iiLibInfo)">Download!</span>
+		</form>
+	</div>
+</div>
+<div class="md-overlay" id="overlay-downloadLibModal"></div><!-- the overlay element -->
