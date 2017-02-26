@@ -1,0 +1,37 @@
+{
+  "name": "color-zones",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mcnedward/color-zones.git"
+  },
+  "author": "Edward McNealy",
+  "license": "ISC",
+  "dependencies": {
+    "angular-recaptcha": "^4.0.3",
+    "bootstrap": "^4.0.0-alpha.6",
+    "express": "^4.14.1",
+    "jquery": "^3.1.1",
+    "knockout": "^3.4.1",
+    "moment": "^2.17.1",
+    "moment-timezone": "^0.5.11",
+    "tether": "^1.4.0"
+  },
+  "devDependencies": {
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-jshint": "^2.0.4",
+    "gulp-less": "^3.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.0.1",
+    "gulp-util": "^3.0.8",
+    "jshint": "^2.9.4",
+    "jshint-stylish": "^2.2.1"
+  }
+}

@@ -1,0 +1,246 @@
+/* --------------------
+Global
+-------------------- */
+@font-face {
+	font-family: 'titilium';
+	src: url('../fonts/TitiliumWeb/titilium-web.woff') format('woff');
+	font-weight: normal !important;
+	font-style: normal !important;
+}
+html, body {
+	overflow-x: hidden;
+	font-family: 'titilium' !important;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+	text-transform: uppercase;
+}
+.main-content {
+	width: 100%;
+	height: auto;
+	min-height: 100%;
+	top: 100%;
+	position: absolute;
+	background: rgba(205, 205, 205, 0.1);
+	color: black;
+}
+.main-content-full {
+	top: 0;
+}
+#mainImage {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: no-repeat center center fixed;
+	background-size: cover;
+	opacity: 0;
+}
+.m-header {
+	background: rgba(39, 132, 34, 0.8);
+	color: white;
+}
+.m-header-show {
+	display: block;
+}
+.m-header a {
+	color: white;
+	text-decoration: none;
+}
+.m-header a:hover {
+	color: black;
+}
+.m-header li {
+	cursor: pointer;
+}
+.navbar {
+	border: none !important;
+}
+
+.img-shadow {
+	box-shadow: 5px 5px 2px #888888;
+}
+.font-lg {
+	font-size: 1.4em;
+}
+
+.portfolio-pic:hover {
+	opacity: 0.4;
+	position: relative;
+	top: 5px;
+	left: 5px;
+}
+.portfolio-main {
+	.font-lg;
+}
+.logo-links {
+	width: 100%;
+	height: auto;
+	display: block;
+	padding: 10px 0 10px;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	background-color: #E42217;
+}
+.logo-links img {
+	vertical-align: middle;
+}
+.logo:hover {
+	opacity: 0.5;
+	position: relative;
+	top: 2px;
+}
+.ii-recaptcha > div {
+	margin: 0 auto;
+}
+.content-recaptcha > div {
+	margin: 0 auto;
+}
+.content-recaptcha {
+	text-align: center;
+}
+
+@media only screen and (min-width : 768px) {
+	.logo-links {
+		padding: 5px 0 5px;
+	}
+	.logo {
+		position: relative;
+		top: 2px;
+	}
+	.content-recaptcha > div {
+		margin: inherit;
+	}
+	.content-recaptcha {
+		text-align: left;
+	}
+}
+@media only screen and (min-width : 992px) {
+	.content {
+		width: 90%;
+		height: 100%;
+		left: 10%;
+		position: relative;
+		display: block;
+		margin: 40px 0 40px;
+		overflow: hidden;
+	}
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none;
+}
+/* --------------------
+Footer
+Sticky Footer by Ryan Fait
+http://ryanfait.com/
+-------------------- */
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -100px;
+	/* the bottom margin is the negative value of the footer's height */
+	padding-top: 80px;
+}
+@media all and (max-width: 600px) {
+	.wrapper {
+		padding-top: 40px;
+	}
+}
+.footer, .push {
+	height: 100px; /* .push must be the same height as .footer */
+}
+
+/* --------------------
+Buttons
+-------------------- */
+.ebtn {
+	display: inline-block;
+	color: #ffffff;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	-webkit-transition: background 0.2s;
+	-moz-transition: background 0.2s;
+	transition: background 0.2s;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	cursor: pointer;
+	min-width: 30%;
+	padding: 5px;
+	margin: 5px;
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+	-o-user-select: none;
+	user-select: none;
+}
+.ebtn-lg {
+	min-width: 75%;
+}
+.ebtn-full {
+	width: 100%;
+}
+.ebtn a:focus, a:hover {
+	text-decoration: none;
+}
+.ebtn-blue {
+	background: #4169E1;
+}
+.ebtn-blue:hover {
+	background: #4F628E;
+}
+.ebtn-purple {
+	background: #800080;
+}
+.ebtn-purple:hover {
+	background: #680049;
+}
+.ebtn-light-purple {
+	background: #9F0A9F;
+}
+.ebtn-green {
+	color: rgb(0, 0, 0);
+	background: #59D657;
+}
+.ebtn-green:hover {
+	color: rgb(255, 255, 255);
+	background: #39991A;
+}
+.ebtn-dark-green {
+	background: #297102;
+}
+.ebtn-red {
+	background: #d9534f;
+}
+.ebtn-red:hover {
+	background: #EF3F6B;
+}
+.ebtn-yellow {
+	background: #D9853C;
+}
+.ebtn-gray {
+	background: rgba(125, 120, 120, 1);	
+}
+.ebtn-gray:hover {
+	background: rgba(64, 60, 60, 1);
+}
+.ebtn-link {
+	color: white !important;
+	text-decoration: none !important;
+}
+.ebtn-link:hover {
+	background: #297102;
+}
+.ebtn-disabled {
+	background-color: gray;
+}
+.ebtn-disabled:hover {
+	background-color: gray;
+	cursor: not-allowed;
+}

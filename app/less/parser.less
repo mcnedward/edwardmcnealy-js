@@ -1,0 +1,195 @@
+input[type="file"] {
+    display: none;
+}
+
+/* Upload */
+.ed-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+	background-color: #59D657;
+	text-transform: uppercase;
+}
+.ed-file-upload:hover {
+	color: rgb(255, 255, 255);
+	background: #39991A;
+}
+.upload-button {
+	text-transform: uppercase;
+}
+
+/* Drag and Drop */
+.file-upload-container {
+	width: 100%;
+	height: 150px;
+	font-size: 24px;
+	border: 3px dashed green;
+	text-transform: uppercase;
+}
+.file-upload-area {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	pointer-events: none;
+}
+.file-upload-text {
+	display: inline-block;
+	line-height: 150px;
+}
+.dragover {
+	background-color: rgba(0, 255, 0, 0.25);
+}
+.dropped {
+	background-color: rgba(45, 140, 18, 0.8);
+	border: 2px solid green;
+}
+.progress-wrapper {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	font-size: 0.6em;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.dragover-error {
+	color: red;
+	background: rgba(150, 15, 20, 0.3);
+	border: 3px dashed red;
+}
+/* The class for the element, not used for the directive! */
+.drag-and-drop {
+	width: 50%;
+	display: inline-block;
+	margin: 0 auto;
+}
+
+.class-container {
+	width: 100%;
+	min-height: 900px;
+	margin: auto;
+	padding: 40px;
+}
+.class-structure {
+	width: 25%;
+	float: left;
+}
+.class-structure-fixed {
+	width: 24%;
+	position: fixed;
+	top: 0;
+	padding-top: 60px;
+	max-height: 850px;
+}
+.class-content {
+	width: 75%;
+	text-align: left;
+	float: right;
+	padding-bottom: 80px;
+	padding-left: 10px;
+}
+.class-content-fixed {
+	min-height: 800px;
+}
+.class-structure-container {
+	max-height: 800px;
+	overflow-y: auto;
+}
+.structure-title {
+	text-align: left;
+}
+.structure-content {
+	text-align: left;
+	padding-left: 20px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	cursor: pointer;
+}
+.structure-content:hover {
+	color: blue;
+}
+.analysis-container div:hover {
+	color: seagreen;
+	background: rgba(70, 64, 64, 0.2);
+}
+.class-content pre {
+	margin: 0;
+	font-size: 12px;
+}
+
+/***** Directory *****/
+.directory-container {
+	display: table;
+}
+.directory-container span {
+	min-width: 120%;
+}
+.directory-indent {
+	padding-left: 20px;
+}
+/* The button for choosing a directory */
+.directory-button {
+	width: auto;
+}
+/* The button for choosing a file */
+.file-button {
+	width: auto;
+}
+.file-selected {
+	background: #4F628E;	/* ebtn-blue:hover color */
+}
+
+/* Directory fading animations */
+.animation {
+  -webkit-transition: 1s;
+}
+.animation.ng-enter {
+  transition: 0.2s linear all;
+  opacity: 0;
+}
+.animation.ng-leave {
+  transition: 0.2s linear all;
+  opacity: 1;
+}
+.animation.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.animation.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+.directory-icon {
+	float: right;
+}
+
+.ebtn {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/* Thanks to: https://jsfiddle.net/tovic/AbpRD/ */
+pre {
+  background-color: #eee;
+  overflow: auto;
+  margin: 0 0 1em;
+  padding: .5em 1em;
+}
+pre code,
+pre .line-number {
+  color: black;
+  display: block;
+}
+pre .line-number {
+  float: left;
+  margin: 0 1em 0 -1em;
+  border-right: 1px solid;
+  text-align: right;
+}
+pre .line-number span {
+  display: block;
+  padding: 0 .5em 0 1em;
+}
+pre .cl {
+  display: block;
+  clear: both;
+}
