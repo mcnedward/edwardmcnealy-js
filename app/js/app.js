@@ -6,6 +6,7 @@ var app = angular.module('mcnedward', ['ui.router', 'ui.bootstrap', 'ngAnimate',
     .state('app', {
       url: '/',
       templateUrl: 'core/home.html',
+      controller: 'ContactCtrl',
       title: 'Edward McNealy'
     })
 		.state('ii', {

@@ -65,29 +65,15 @@
 
 <body ui-router-styles ondragstart="return false;" ondrop="console.log('drop');return false;">
 
-  <div id="mainImage" data-ng-hide="hideMainImg" data-ng-cloak>
-		<img id="background" class="background-img"/>
-		<div class="info-container" data-ng-include="'core/info.html'"></div>
-	</div>
-	<div id="mainContent" class="main-content" data-ng-class="{'main-content-full':hideMainImg}">
-		<a id="scrollhere"></a>
-		<nav id="mHeader" class="navbar fixed-top m-header">
-			<div class="container" data-ng-class="{'m-header-show': hideMainImg}">
-			  <div class="text-center text-md-left"><a href="/">HOME</a></div>
-			</div>
-		</nav>
-    <div class="wrapper" data-ng-class="{'container-fluid': useContainerFluid, container: !useContainerFluid}">
-			<div data-ui-view></div>
-			<div class="push"></div>
-		</div>
-		<div class="footer">
-			<div class="logo-links">
-				<span class="logo"><a href="https://github.com/mcnedward"><img src="img/core/github-icon-black.png" alt="github"/></a></span>
-				<span class="logo"><a href="https://www.linkedin.com/in/mcnedward"><img src="img/core/linkedin-icon-black.png" alt="linkedin"/></a></span>
-				<label>&copy; Edward McNealy 2015</label>
-			</div>
-		</div>
-	</div>
+  <div>
+    <div id="loader"></div>
+    <div data-ui-view></div>
+    <div class="logo-links text-center pt-2 pb-2">
+      <span class="logo"><a href="https://github.com/mcnedward"><img src="img/core/github-icon-black.png" alt="github"/></a></span>
+      <span class="logo"><a href="https://www.linkedin.com/in/mcnedward"><img src="img/core/linkedin-icon-black.png" alt="linkedin"/></a></span>
+      <label>&copy; Edward McNealy 2015</label>
+    </div>
+  </div>
 
 </body>
 </html>

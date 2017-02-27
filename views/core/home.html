@@ -1,8 +1,23 @@
 <div>
-	<div data-ng-include="'core/portfolio.html'"></div>
-	<hr/><br/>
-	<div data-ng-include="'core/specs.html'"></div>
-	<hr/><br/>
-	<div data-ng-include="'core/contact.html'" data-ng-controller="ContactCtrl"></div>
+  <div class="info pt-4 pb-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-6 text-center text-md-right">
+          <img src="img/core/isleOfSky.jpg" class="img-profile img-fluid rounded-circle mb-3" alt="Edward McNealy"/>
+        </div>
+        <div class="col-xs-12 col-md-6 info-text text-center text-md-left">
+          <h2>Edward McNealy</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+	<div class="portfolio pt-5 pb-3">
+    <div class="container" data-ng-include="'core/portfolio.html'"></div>
+  </div>
+	<div class="specs pt-5 pb-3">
+    <div class="container" data-ng-include="'core/specs.html'"></div>
+  </div>
+	<div class="contact pt-5 pb-3">
+    <div class="container" data-ng-include="'core/contact.html'"></div>
+  </div>
 </div>
-
