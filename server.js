@@ -36,6 +36,9 @@ app.use('/js/angular-recaptcha', express.static(modules + 'angular-recaptcha/rel
 app.use('/js/knockout', express.static(modules + 'knockout/build/output/knockout-latest' + jsExt));
 app.use('/js/moment', express.static(modules + 'moment/min/moment' + jsExt));
 app.use('/js/moment-timezone', express.static(modules + 'moment-timezone/builds/moment-timezone-with-data' + jsExt));
+app.use('/js/classie', express.static(modules + 'modal-ed/classie' + jsExt));
+app.use('/js/cssParser', express.static(modules + 'modal-ed/cssParser' + jsExt));
+app.use('/js/modernizr', express.static(modules + 'modal-ed/modernizr' + jsExt));
 app.use('/css/tether', express.static(modules + 'tether/dist/css/tether' + cssExt)); 
 app.use('/css/bootstrap', express.static(modules + 'bootstrap/dist/css/bootstrap' + cssExt)); 
 app.use('/css', express.static(modules + 'bootstrap/dist/css'));

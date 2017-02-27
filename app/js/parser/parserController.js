@@ -176,7 +176,7 @@ angular.module('mcnedward')
         $scope.errorMessage = 'Could not find any files in directory ' + $scope.directory.name + '.';
       }
     }
-
+    
     function setFileNames(classObjects) {
       var fileNames = [];
       angular.forEach(classObjects, function (value, key) {

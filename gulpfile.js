@@ -33,6 +33,14 @@ gulp.task('build-scripts', function() {
     .pipe(gulp.dest('public/js'));
 })
 
+gulp.task('build-scripts-ugly', function() {
+  return gulp.src('node_modules/modal-ed/classie.js')
+    .pipe(sourcemaps.init())
+    .pipe(uglify())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('node_modules/modal-ed/out'));
+})
+
 // Builds all less to the public directory
 gulp.task('build-less', function() {
   return gulp.src('app/less/**/*.less')

@@ -7,53 +7,38 @@ Global
 	font-weight: normal !important;
 	font-style: normal !important;
 }
-
 @red: #CF4647;
 @ghost-white: #f4f4f4;
 @purple: #6b4472;
+@green: #51B641;
 @white: #fff;
 @black: #000;
 @shadow: #888888;
 
 html, body {
+  height:100%;
+  width:100%;
+  margin:0;
 	overflow-x: hidden;
 	font-family: 'titilium' !important;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	margin: 0;
 	background-color: @ghost-white;
 }
+body {
+  display: table;
+}
+#wrapper, footer {
+  display:table-row;
+}
+#wrapper {
+  height: 100%;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	text-transform: uppercase;
-}
-.main-content {
-	width: 100%;
-	height: auto;
-	min-height: 100%;
-	top: 100%;
-	position: absolute;
-	background: rgba(205, 205, 205, 0.1);
-	color: black;
-}
-.main-content-full {
-	top: 0;
-}
-#mainImage {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	background: no-repeat center center fixed;
-	background-size: cover;
-	opacity: 0;
 }
 .m-header {
 	background: rgba(39, 132, 34, 0.8);
 	color: white;
-}
-.m-header-show {
-	display: block;
 }
 .m-header a {
 	color: white;
@@ -61,12 +46,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .m-header a:hover {
 	color: black;
-}
-.m-header li {
-	cursor: pointer;
-}
-.navbar {
-	border: none !important;
 }
 
 .info {
@@ -78,8 +57,8 @@ h1, h2, h3, h4, h5, h6 {
   color: @white;
 }
 .specs {
-  background-color: @ghost-white;
-  color: @black;
+  background-color: @green;
+  color: @white;
 }
 .contact {
   background-color: @purple;
@@ -159,17 +138,6 @@ h1, h2, h3, h4, h5, h6 {
 		text-align: left;
 	}
 }
-@media only screen and (min-width : 992px) {
-	.content {
-		width: 90%;
-		height: 100%;
-		left: 10%;
-		position: relative;
-		display: block;
-		margin: 40px 0 40px;
-		overflow: hidden;
-	}
-}
 
 [ng\:cloak], [ng-cloak], .ng-cloak {
     display: none;
@@ -185,30 +153,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --------------------
-Footer
-Sticky Footer by Ryan Fait
-http://ryanfait.com/
--------------------- */
-.wrapper {
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
-	margin: 0 auto -100px;
-	/* the bottom margin is the negative value of the footer's height */
-	padding-top: 80px;
-}
-@media all and (max-width: 600px) {
-	.wrapper {
-		padding-top: 40px;
-	}
-}
-.footer, .push {
-	height: 100px; /* .push must be the same height as .footer */
-}
-
-/* --------------------
 Buttons
 -------------------- */
+.btn {
+  cursor: pointer;
+}
 .ebtn {
 	display: inline-block;
 	color: #ffffff;

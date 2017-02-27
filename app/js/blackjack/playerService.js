@@ -116,6 +116,7 @@ angular.module('mcnedward')
 			localStorage.users = JSON.stringify(users);
 		}
 	}
+  initUsers();
 	
 	function getChips() {
 		return {
