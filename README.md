@@ -1,1 +1,1 @@
-# edwardmcnealy.com
+# edwardmcnealy
