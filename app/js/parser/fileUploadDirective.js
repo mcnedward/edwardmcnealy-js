@@ -46,11 +46,15 @@ angular.module('mcnedward')
 			}			
 			function checkProgress() {
 				$timeout(function() {
-					parserService.getUploadProgress(scope.secretResponse, scope.token, function(response) {
-						scope.uploadProgress = response.data.entity;
-						if (loading) {
-							checkProgress();
-						}
+					parserService.getUploadProgress(scope.secretResponse, scope.token).then((response) => {
+            if (!response.ok) return;
+            
+            response.text().then((text) => {
+              scope.uploadProgress = text;
+              if (loading) {
+                checkProgress();
+              }
+            });
 					});
 				}, 300);
 			}

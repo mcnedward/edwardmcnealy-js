@@ -48,16 +48,30 @@ angular.module('mcnedward')
     function uploadFiles(secretResponse, token) {
       $scope.secretResponse = secretResponse;
       $scope.token = token;
-      parserService.uploadFiles($scope.files, secretResponse, token).then(
-        function (response) {
-          var uploadResponse = response.data.entity;
+
+      parserService.uploadFiles($scope.files, secretResponse, token).then((response) => {
+        if (!response.ok) {
+          response.text().then((text) => {
+            errorHandler(text);
+            return;
+          });
+        }
+
+        response.json().then((uploadResponse) => {
           $scope.uploadDirectory.token = uploadResponse.token;
           $scope.uploadDirectory.fileIds = uploadResponse.fileIds;
           try {
             // Send back the uploadResponse along with the directory structure
             // This is when the actual parsing of the files will happen
-            parserService.parseFiles($scope.uploadDirectory, secretResponse, token).then(
-              function (response) {
+            parserService.parseFiles($scope.uploadDirectory, secretResponse, token).then((response) => {
+              if (!response.ok) {
+                response.text().then((text) => {
+                  errorHandler(text);
+                  return;
+                });
+              }
+
+              response.json().then((directoryResponse) => {
                 var directoryResponse = response.data.entity;
                 parserService.saveDirectory(directoryResponse);
 
@@ -70,15 +84,13 @@ angular.module('mcnedward')
                 var classObject = findFirstFileInDirectory(directoryResponse);
                 $scope.classObject = classObject;
                 styleLineNumbers(classObject);
-              }, function (error) {
-                errorHandler(errorParsingMessage, error);
               });
+            });
           } catch (error) {
             errorHandler(errorParsingMessage, error);
           }
-        }, function (error) {
-          errorHandler(errorUploadingMessage, error);
         });
+      });
     }
 
     $scope.uploadFile = function (form, uploadInfo) {

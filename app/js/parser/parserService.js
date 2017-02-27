@@ -15,8 +15,17 @@ angular.module('mcnedward')
 			formData.append('files', value);
 		});
 		
-		var url = 'parser/files?secretResponse=' + secretResponse + '&requestToken=' + token;
-        return requestService.sendRequest(url, 'POST', {data: formData, headers: {"Content-Type": undefined}, transformRequest: angular.identity});
+    
+		var url = '/api/parser/files?secretResponse=' + secretResponse + '&requestToken=' + token;
+    return requestService.sendRequest(url, 'POST', {
+      data: formData,
+      headers: {"Content-Type": undefined},
+      transformRequest: angular.identity
+    });
+    // fetch('/api/parser/files?secretResponse=' + secretResponse + '&requestToken=' + token, {
+    //   method: 'POST',
+    //   body: formData
+    // });
 	}
 
 	parserService.parseFiles = function(directory, secretResponse, token) {
@@ -25,13 +34,7 @@ angular.module('mcnedward')
 	}
 
 	parserService.getUploadProgress = function(secretResponse, token, responseFunction) {
-		var url = 'parser/progress?secretResponse=' + secretResponse + '&requestToken=' + token;
-		requestService.sendRequest(url, 'GET').then(
-		function(response) {
-			responseFunction(response);
-		}, function(error) {
-			console.log(error.message ? error.message : 'Something went wrong getting the progress...');
-		});
+    return fetch('/api/parser/progress?secretResponse=' + secretResponse + '&requestToken=' + token);
 	}
 
 	parserService.saveClasses = function(classObjects) {

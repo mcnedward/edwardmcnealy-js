@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var fs = require('fs');
 var bodyParser = require('body-parser');
+var fileUpload = require('express-fileupload');
 var path = require('path');
 global.environment = 'dev';
 const mapboxAccessToken = "pk.eyJ1IjoiZWR3YXJkbWNuZWFseSIsImEiOiJjaXo3bmszcG0wMGZzMzNwZGd2d2szdmZqIn0.1ycNDtJkOf2K0bBa6tG04g";
@@ -24,24 +25,24 @@ app.use('/css', express.static(__dirname + '/public/css'));
 app.use('/fonts', express.static(__dirname + '/public/fonts')); 
 
 // Modules
-var modules = __dirname + '/node_modules/';
-app.use('/js/tether', express.static(modules + 'tether/dist/js/tether' + jsExt));
-app.use('/js/bootstrap', express.static(modules + 'bootstrap/dist/js/bootstrap' + jsExt));
-app.use('/js/jquery', express.static(modules + 'jquery/dist/jquery' + jsExt));
-app.use('/js/angular', express.static(modules + 'angular/angular' + jsExt));
-app.use('/js/angular-ui-router', express.static(modules + 'angular-ui-router/release/angular-ui-router' + jsExt));
-app.use('/js/angular-animate', express.static(modules + 'angular-animate/angular-animate' + jsExt));
-app.use('/js/ui-bootstrap', express.static(modules + 'angular-ui-bootstrap/dist/ui-bootstrap-tpls' + jsExt));
-app.use('/js/angular-recaptcha', express.static(modules + 'angular-recaptcha/release/angular-recaptcha' + jsExt));
-app.use('/js/knockout', express.static(modules + 'knockout/build/output/knockout-latest' + jsExt));
-app.use('/js/moment', express.static(modules + 'moment/min/moment' + jsExt));
-app.use('/js/moment-timezone', express.static(modules + 'moment-timezone/builds/moment-timezone-with-data' + jsExt));
-app.use('/js/classie', express.static(modules + 'modal-ed/classie' + jsExt));
-app.use('/js/cssParser', express.static(modules + 'modal-ed/cssParser' + jsExt));
-app.use('/js/modernizr', express.static(modules + 'modal-ed/modernizr' + jsExt));
-app.use('/css/tether', express.static(modules + 'tether/dist/css/tether' + cssExt)); 
-app.use('/css/bootstrap', express.static(modules + 'bootstrap/dist/css/bootstrap' + cssExt)); 
-app.use('/css', express.static(modules + 'bootstrap/dist/css'));
+var modules = __dirname + '/node_modules';
+app.use('/js/tether', express.static(path.join(modules, './tether/dist/js/tether' + jsExt)));
+app.use('/js/bootstrap', express.static(path.join(modules, './bootstrap/dist/js/bootstrap' + jsExt)));
+app.use('/js/jquery', express.static(path.join(modules, './jquery/dist/jquery' + jsExt)));
+app.use('/js/angular', express.static(path.join(modules, './angular/angular' + jsExt)));
+app.use('/js/angular-ui-router', express.static(path.join(modules, './angular-ui-router/release/angular-ui-router' + jsExt)));
+app.use('/js/angular-animate', express.static(path.join(modules, './angular-animate/angular-animate' + jsExt)));
+app.use('/js/ui-bootstrap', express.static(path.join(modules, './angular-ui-bootstrap/dist/ui-bootstrap-tpls' + jsExt)));
+app.use('/js/angular-recaptcha', express.static(path.join(modules, './angular-recaptcha/release/angular-recaptcha' + jsExt)));
+app.use('/js/knockout', express.static(path.join(modules, './knockout/build/output/knockout-latest' + jsExt)));
+app.use('/js/moment', express.static(path.join(modules, './moment/min/moment' + jsExt)));
+app.use('/js/moment-timezone', express.static(path.join(modules, './moment-timezone/builds/moment-timezone-with-data' + jsExt)));
+app.use('/js/classie', express.static(path.join(modules, './modal-ed/classie' + jsExt)));
+app.use('/js/cssParser', express.static(path.join(modules, './modal-ed/cssParser' + jsExt)));
+app.use('/js/modernizr', express.static(path.join(modules, './modal-ed/modernizr' + jsExt)));
+app.use('/css/tether', express.static(path.join(modules, './tether/dist/css/tether' + cssExt))); 
+app.use('/css/bootstrap', express.static(path.join(modules, './bootstrap/dist/css/bootstrap' + cssExt)));
+app.use('/css', express.static(path.join(modules, './bootstrap/dist/css')));
 
 // Views
 app.use(express.static(path.join(__dirname, './views')));
@@ -49,11 +50,13 @@ app.use(express.static(path.join(__dirname, './views')));
 // Images
 app.use('/img', express.static(path.join(__dirname, './public/img')));
 
-app.use(bodyParser.urlencoded({'extended':'true'}));
+app.use(fileUpload());
 app.use(bodyParser.json());
 app.use(bodyParser.json({type:'application/json'}));
+app.use(bodyParser.urlencoded({extended: true})); 
 
 // API Endpoints
+// Color Zones
 app.get('/api/map', function(req, res) {
   var centerLat = req.query.centerLat,
       centerLng = req.query.centerLng,
@@ -76,6 +79,54 @@ app.get('/api/hover-regions', function(req, res) {
   var fileName = __dirname + '/tz_json/hover_regions.json';
   fileResponse(req, res, fileName);
 })
+
+// recaptcha
+app.post('/api/recaptcha/verify', (req, res) => {
+  var secretResponse = req.query.secretResponse;
+  var result = {
+
+  };
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify(result));
+})
+
+// Parser
+app.post('/api/parser/files', (req, res) => {
+  var secretResponse = req.query.secretResponse;
+  var requestToken = req.query.requestToken;
+
+  if (!req.files) {
+    return res.status(400).send('No files were uploaded...');
+  }
+
+  console.log('files: ' + req.files)
+  var result = {
+    token: 'token',
+    fileIds: []
+  };
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify(result));
+})
+app.post('/api/parser/parse', (req, res) => {
+  var secretResponse = req.query.secretResponse;
+  var requestToken = req.query.requestToken;
+  var directory = req.body;
+
+  var result = {
+  };
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify(result));
+})
+app.get('api/parser/progress', (req, res) => {
+  var secretResponse = req.query.secretResponse;
+  var requestToken = req.query.requestToken;
+
+  var result = 100;
+  console.log('progress')
+  res.send(result);
+})
+
+// Number Printer
 app.get('/api/number-printer/convert', (req, res) => {
   var number = req.query.number;
   var result = {

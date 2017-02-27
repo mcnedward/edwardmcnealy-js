@@ -14,31 +14,15 @@ angular.module('mcnedward')
 			errorCallback('Sorry, but something went wrong with the reCaptcha. Please refresh the page and try again.');
 			return;
 		}
-		var url = '/api/captcha/verify?secretResponse=' + secretResponse;
-		requestService.sendRequest(url, 'POST').then(
-			function(response) {
-				var data = response.data;
-				var token = data ? data.entity : null;
-				if (!token || token === '') {
-					errorCallback('Token is missing...');
-					return;
-				}
-				successCallback(secretResponse, token);
-			},
-			function(errorResponse) {
-				var errorMessage = '', 
-					data = errorResponse.data,
-					errors = data.errors ? data.errors : [];
-				
-				if (errors.length > 0) {
-					for (var i = 0; i < errors.length; i++) {
-						errorMessage += errors[i];
-					}
-				} else {
-					errorMessage = 'Something went wrong when trying verify your reCaptcha... Please try again.';
-				}
-				errorCallback(errorMessage);
-			});
+    fetch('/api/recaptcha/verify?secretResponse=' + secretResponse, {method: 'POST'}).then((response) => {
+      if (!response.ok) {
+        errorCallback('Token is missing...');
+        return;
+      }
+      response.text().then((token) => {
+        successCallback(secretResponse, token);
+      })
+    })
 	}
 
 	return recaptchaService;
