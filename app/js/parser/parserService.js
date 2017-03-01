@@ -15,22 +15,19 @@ angular.module('mcnedward')
 			formData.append('files', value);
 		});
 		
-    
 		var url = '/api/parser/files?secretResponse=' + secretResponse + '&requestToken=' + token;
-    return requestService.sendRequest(url, 'POST', {
-      data: formData,
-      headers: {"Content-Type": undefined},
-      transformRequest: angular.identity
+    return fetch(url, {
+      method: 'POST',
+      body: formData
     });
-    // fetch('/api/parser/files?secretResponse=' + secretResponse + '&requestToken=' + token, {
-    //   method: 'POST',
-    //   body: formData
-    // });
 	}
 
 	parserService.parseFiles = function(directory, secretResponse, token) {
-		var url = 'parser/parse?secretResponse=' + secretResponse + '&requestToken=' + token; 
-		return requestService.sendRequest(url, 'POST', {data: directory});
+		var url = '/api/parser/parse?secretResponse=' + secretResponse + '&requestToken=' + token; 
+		return fetch(url, {
+      method: 'POST',
+      data: directory
+    });
 	}
 
 	parserService.getUploadProgress = function(secretResponse, token, responseFunction) {

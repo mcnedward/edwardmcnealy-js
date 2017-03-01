@@ -30,7 +30,6 @@ angular.module('mcnedward')
 				if (isLoading) {
 					loading = true;
 					scope.uploadProgress = 0;
-					scope.dragAreaMessage = 'Analyzing your files...';
 					checkProgress();
 				} else {
 					loading = false;

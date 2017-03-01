@@ -56,7 +56,6 @@ angular.module('mcnedward')
             return;
           });
         }
-
         response.json().then((uploadResponse) => {
           $scope.uploadDirectory.token = uploadResponse.token;
           $scope.uploadDirectory.fileIds = uploadResponse.fileIds;
@@ -71,6 +70,7 @@ angular.module('mcnedward')
                 });
               }
 
+              $scope.dragAreaMessage = 'Analyzing your files...';
               response.json().then((directoryResponse) => {
                 var directoryResponse = response.data.entity;
                 parserService.saveDirectory(directoryResponse);
@@ -85,6 +85,8 @@ angular.module('mcnedward')
                 $scope.classObject = classObject;
                 styleLineNumbers(classObject);
               });
+            }, (error) => {
+              errorHandler(errorParsingMessage, error);
             });
           } catch (error) {
             errorHandler(errorParsingMessage, error);
@@ -101,6 +103,7 @@ angular.module('mcnedward')
       form.$setPristine();
       form.$setUntouched();
       $scope.load(true);
+      $scope.dragAreaMessage = 'Uploading your files...';
       recaptchaService.verify(uploadInfo.recaptchaResponse, uploadFiles, errorHandler);
     }
 

@@ -1,11 +1,11 @@
-var express = require('express');
-var app = express();
-var fs = require('fs');
-var bodyParser = require('body-parser');
-var fileUpload = require('express-fileupload');
-var path = require('path');
-global.environment = 'dev';
+const express = require('express'),
+      app = express(),
+      fs = require('fs'),
+      bodyParser = require('body-parser'),
+      fileUpload = require('express-fileupload'),
+      path = require('path');
 const mapboxAccessToken = "pk.eyJ1IjoiZWR3YXJkbWNuZWFseSIsImEiOiJjaXo3bmszcG0wMGZzMzNwZGd2d2szdmZqIn0.1ycNDtJkOf2K0bBa6tG04g";
+global.environment = 'dev';
 
 // App
 var scriptDir, jsExt, cssExt;
@@ -98,8 +98,6 @@ app.post('/api/parser/files', (req, res) => {
   if (!req.files) {
     return res.status(400).send('No files were uploaded...');
   }
-
-  console.log('files: ' + req.files)
   var result = {
     token: 'token',
     fileIds: []

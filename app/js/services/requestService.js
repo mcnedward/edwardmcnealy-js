@@ -28,11 +28,12 @@ angular.module('mcnedward')
 			httpRequest.transformRequest = options.transformRequest
 		}
 
-    httpRequest.then((response) => {
-      if (response.ok) {
-        deferred.resolve(response);
-      }
-    })
+    return httpRequest;
+    // .then((response) => {
+    //   if (response.ok) {
+    //     deferred.resolve(response);
+    //   }
+    // })
 		
 		// httpRequest.success(function(data, status, headers, config) {
 		// 	var result = {
