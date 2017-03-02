@@ -29,7 +29,7 @@ function TimeZoneService(mapWidth) {
     _timeZoneRegionsObservable = timeZoneRegionsObservable;
 
     // Load the time zone regions
-    fetch('/api/hover-regions').then(function (response) {
+    fetch('/api/color-zones/hover-regions').then(function (response) {
       if (!response.ok) {
         _errorCallback('Something went wrong trying to load the time zone regions...');
         return;
@@ -74,7 +74,7 @@ function TimeZoneService(mapWidth) {
 
     // Load the bounding boxes
     function loadBoundingBoxes() {
-      fetch('/api/map-bounds').then(function (response) {
+      fetch('/api/color-zones/map-bounds').then(function (response) {
         if (!response.ok) {
           // TODO Handle error here
           return;
@@ -102,7 +102,7 @@ function TimeZoneService(mapWidth) {
     // Load the polygons for a time zone
     function loadZonePolygons(timeZone) {
       var zoneName = timeZone.name.replace(/\/|_/g, '-');
-      fetch('/api/polygons/' + zoneName).then(function (response) {
+      fetch('/api/color-zones/polygons/' + zoneName).then(function (response) {
         if (!response.ok) {
           _errorCallback('Something went wrong trying to load the time zone polygons for ' + zoneName + '...');
           return;

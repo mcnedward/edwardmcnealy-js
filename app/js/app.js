@@ -24,6 +24,7 @@ var app = angular.module('mcnedward', ['ui.router', 'ui.bootstrap', 'ngAnimate',
 		.state('colorZones', {
 			url: '/color-zones/',
 			templateUrl: 'colorZones/colorZones.html',
+			controller: 'ColorZonesCtrl',
 			title: 'Color Zones'
 		})
 		.state('bramble', {

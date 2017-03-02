@@ -1,4 +1,4 @@
-var ColorZones = function (renderer, timeZoneService, colorPicker) {
+var ColorZonesViewModel = function (renderer, timeZoneService, colorPicker) {
   var self = this;
 
   const width = renderer.width(), height = renderer.height();
@@ -89,10 +89,10 @@ var ColorZones = function (renderer, timeZoneService, colorPicker) {
   // Load the map image
   function loadMap(mapCallback) {
     _mapCallback = mapCallback;
-    fetch('/api/map?centerLat=' + self.centerLat() + '&centerLng=' + self.centerLng() + '&zoom=' + self.zoom() + '&width=' + width + '&height=' + height)
+    fetch('/api/color-zones/map?centerLat=' + self.centerLat() + '&centerLng=' + self.centerLng() + '&zoom=' + self.zoom() + '&width=' + width + '&height=' + height)
     .then(function (response) {
       if (!response.ok) {
-        console.error('Something went wrong trying to load the map iamge...');
+        console.error('Something went wrong trying to load the map image...');
         return;
       }
       response.text().then(function (mapUrl) {

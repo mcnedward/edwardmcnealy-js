@@ -5,7 +5,7 @@ angular.module('mcnedward')
 		$rootScope.inRoot = true;
 		$rootScope.appTitle = "Edward McNealy";
 
-		$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+		$rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
       $rootScope.appTitle = toState.title && toState.title !== '' ? toState.title : 'Edward McNealy';
       if (fromState.name === 'app') {
         // Scroll up to the top when going away from the main app
@@ -14,6 +14,9 @@ angular.module('mcnedward')
             scrollTop : $('#scrollhere').offset().top + 2
           }, 1);
         });
+      } else if (fromState.name === 'colorZones') {
+        // The color zones need to stop rendering since we're no longer on that page
+        $rootScope.$broadcast('stopRendering');
       }
       
       $rootScope.inRoot = toState.name === 'app' || toState.name === '';

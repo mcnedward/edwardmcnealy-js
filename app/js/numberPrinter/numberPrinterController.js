@@ -29,7 +29,7 @@ angular.module('mcnedward')
 			$scope.errorMessage = 'You need to enter something!';
 			return;
 		}
-    return fetch('/api/number-printer/convert?number=' + number).then((response) => {
+    return fetch('/api/number-printer?number=' + number).then((response) => {
       if (response.ok) {
         response.json().then(callback);
         return;

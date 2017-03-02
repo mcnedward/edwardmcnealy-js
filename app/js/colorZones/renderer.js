@@ -12,16 +12,22 @@ function Renderer() {
   // Then I can just set the color before calling a drawing function
 
   self.renderFunction = ko.observable();
+  self.stopRendering = ko.observable(false);
 
   function render() {
-    requestAnimationFrame(render);
-    
-    // Clear the canvas each frame
-    clear();
-    drawImageBackground();
+    if (self.stopRendering()) return;
+    try {
+      requestAnimationFrame(render);
+      
+      // Clear the canvas each frame
+      clear();
+      drawImageBackground();
 
-    if (self.renderFunction())
-      self.renderFunction()();
+      if (self.renderFunction())
+        self.renderFunction()();
+    } catch(e) {
+      // Swallowing exeptions till I figure a better way to report them
+    }
   }
   render();
 
