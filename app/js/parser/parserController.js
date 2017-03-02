@@ -53,8 +53,8 @@ angular.module('mcnedward')
         if (!response.ok) {
           response.text().then((text) => {
             errorHandler(text);
-            return;
           });
+          return;
         }
         response.json().then((uploadResponse) => {
           $scope.uploadDirectory.token = uploadResponse.token;
@@ -68,23 +68,22 @@ angular.module('mcnedward')
                   errorHandler(text);
                   return;
                 });
+              } else {
+                $scope.dragAreaMessage = 'Analyzing your files...';
+                response.json().then((directoryResponse) => {
+                  parserService.saveDirectory(directoryResponse);
+
+                  $scope.load(false);
+                  $scope.fileSelected = false;
+                  $scope.isParsingComplete = true;
+
+                  $scope.uploadDirectory = {};
+                  $scope.directory = directoryResponse;
+                  var classObject = findFirstFileInDirectory(directoryResponse);
+                  $scope.classObject = classObject;
+                  styleLineNumbers(classObject);
+                });
               }
-
-              $scope.dragAreaMessage = 'Analyzing your files...';
-              response.json().then((directoryResponse) => {
-                var directoryResponse = response.data.entity;
-                parserService.saveDirectory(directoryResponse);
-
-                $scope.load(false);
-                $scope.fileSelected = false;
-                $scope.isParsingComplete = true;
-
-                $scope.uploadDirectory = {};
-                $scope.directory = directoryResponse;
-                var classObject = findFirstFileInDirectory(directoryResponse);
-                $scope.classObject = classObject;
-                styleLineNumbers(classObject);
-              });
             }, (error) => {
               errorHandler(errorParsingMessage, error);
             });
@@ -105,6 +104,7 @@ angular.module('mcnedward')
       $scope.load(true);
       $scope.dragAreaMessage = 'Uploading your files...';
       recaptchaService.verify(uploadInfo.recaptchaResponse, uploadFiles, errorHandler);
+      // uploadFiles('secret', 'token');
     }
 
     $scope.selectClassObject = function (file) {
@@ -131,7 +131,14 @@ angular.module('mcnedward')
     $scope.moveToLine = function (content) {
       var lineNumber = content.lineNumber;
       var element = $('#' + lineNumber);
-      element.effect("highlight", {}, 3000);
+      element.addClass('line-animation-in')
+      setTimeout(() => {
+        element.addClass('line-animation-out')
+        setTimeout(() => {
+          element.removeClass('line-animation-in');
+          element.removeClass('line-animation-out');
+        }, 1500);
+      }, 3000);
       $('html, body').animate({
         scrollTop: element.offset().top - 200
       }, 500);

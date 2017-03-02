@@ -3,8 +3,11 @@ const express = require('express'),
       fs = require('fs'),
       bodyParser = require('body-parser'),
       fileUpload = require('express-fileupload'),
+      request = require('request'),
       path = require('path');
+
 const mapboxAccessToken = "pk.eyJ1IjoiZWR3YXJkbWNuZWFseSIsImEiOiJjaXo3bmszcG0wMGZzMzNwZGd2d2szdmZqIn0.1ycNDtJkOf2K0bBa6tG04g";
+const mcnedward = 'http://localhost:8080'; // The server running the Java mcnedward.com
 global.environment = 'dev';
 
 // App
@@ -46,7 +49,6 @@ app.use('/css', express.static(path.join(modules, './bootstrap/dist/css')));
 
 // Views
 app.use(express.static(path.join(__dirname, './views')));
-
 // Images
 app.use('/img', express.static(path.join(__dirname, './public/img')));
 
@@ -83,45 +85,85 @@ app.get('/api/hover-regions', function(req, res) {
 // recaptcha
 app.post('/api/recaptcha/verify', (req, res) => {
   var secretResponse = req.query.secretResponse;
-  var result = {
+  var url = mcnedward + '/api/recaptcha/verify?secretResponse=' + secretResponse;
 
-  };
-  res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify(result));
+  request.post(url, (err, response, body) => {
+    handleServerResponse(err, response.statusCode, body, res);
+  });
 })
+
+function handleServerResponse(err, statusCode, body, res, isJson) {
+  if (err) {
+    console.warn(err);
+    res.status(400).send(err);
+  } else {
+    var result;
+    try {
+      result = JSON.parse(body);
+    } catch(e) {
+      result = {};
+    }
+    if (statusCode === 200) {
+      if (isJson) {
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).send(JSON.stringify(result.entity));
+      } else {
+        res.status(200).send(result.entity);
+      }
+    } else {
+      var message = result.errors && result.errors.length > 0 ? result.errors[0] : 'Something went wrong with your request...';
+      res.status(statusCode).send(message);
+    }
+  }
+}
 
 // Parser
 app.post('/api/parser/files', (req, res) => {
-  var secretResponse = req.query.secretResponse;
-  var requestToken = req.query.requestToken;
-
-  if (!req.files) {
+  if (!req.files || !req.files.files || req.files.files.length === 0) {
     return res.status(400).send('No files were uploaded...');
   }
-  var result = {
-    token: 'token',
-    fileIds: []
-  };
-  res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify(result));
+  var secretResponse = req.query.secretResponse;
+  var requestToken = req.query.requestToken;
+  var url = mcnedward + '/api/parser/files?secretResponse=' + secretResponse + '&requestToken=' + requestToken;
+
+  var serverRequest = request.post(url, (err, response, body) => {
+    handleServerResponse(err, response.statusCode, body, res);
+  });
+  var form = serverRequest.form();
+  var files = req.files.files;
+  for (var i = 0; i < files.length; i++) {
+    var file = files[i];
+    form.append('files', file.data, {
+      filename: file.name,
+      contentType: 'text/plain'
+    });
+  }
 })
 app.post('/api/parser/parse', (req, res) => {
   var secretResponse = req.query.secretResponse;
   var requestToken = req.query.requestToken;
-  var directory = req.body;
+  var directory = JSON.stringify(req.body);
+  var url = mcnedward + '/api/parser/parse?secretResponse=' + secretResponse + '&requestToken=' + requestToken;
 
-  var result = {
+  var options = {
+    url: url,
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: directory
   };
-  res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify(result));
+  request.post(options, (err, response, body) => {
+    handleServerResponse(err, response.statusCode, body, res, true);
+  });
 })
 app.get('api/parser/progress', (req, res) => {
   var secretResponse = req.query.secretResponse;
   var requestToken = req.query.requestToken;
+  var url = mcnedward + '/api/parser/progress?secretResponse=' + secretResponse + '&requestToken=' + requestToken;
 
-  var result = 100;
-  console.log('progress')
-  res.send(result);
+  request.get(url, (err, response, body) => {
+    handleServerResponse(err, response.statusCode, body, res);
+  })
 })
 
 // Number Printer

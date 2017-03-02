@@ -44,18 +44,18 @@ angular.module('mcnedward')
 				}
 			}			
 			function checkProgress() {
-				$timeout(function() {
-					parserService.getUploadProgress(scope.secretResponse, scope.token).then((response) => {
-            if (!response.ok) return;
+				// $timeout(function() {
+				// 	parserService.getUploadProgress(scope.secretResponse, scope.token).then((response) => {
+        //     if (!response.ok) return;
             
-            response.text().then((text) => {
-              scope.uploadProgress = text;
-              if (loading) {
-                checkProgress();
-              }
-            });
-					});
-				}, 300);
+        //     response.text().then((text) => {
+        //       scope.uploadProgress = text;
+        //       if (loading) {
+        //         checkProgress();
+        //       }
+        //     });
+				// 	});
+				// }, 300);
 			}
 			
 			element.bind('dragenter', function(e) {

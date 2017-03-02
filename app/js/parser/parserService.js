@@ -23,10 +23,15 @@ angular.module('mcnedward')
 	}
 
 	parserService.parseFiles = function(directory, secretResponse, token) {
-		var url = '/api/parser/parse?secretResponse=' + secretResponse + '&requestToken=' + token; 
+    directory.uploadFiles = null;
+		var url = '/api/parser/parse?secretResponse=' + secretResponse + '&requestToken=' + token;
 		return fetch(url, {
       method: 'POST',
-      data: directory
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(directory)
     });
 	}
 

@@ -1,7 +1,7 @@
 {
   "name": "edwardmcnealy",
   "version": "1.0.0",
-  "description": "",
+  "description": "The personal website of Edward McNealy",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,6 +21,7 @@
     "knockout": "^3.4.1",
     "moment": "^2.17.1",
     "moment-timezone": "^0.5.11",
+    "request": "^2.79.0",
     "tether": "^1.4.0"
   },
   "devDependencies": {

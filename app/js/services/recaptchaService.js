@@ -15,13 +15,14 @@ angular.module('mcnedward')
 			return;
 		}
     fetch('/api/recaptcha/verify?secretResponse=' + secretResponse, {method: 'POST'}).then((response) => {
-      if (!response.ok) {
-        errorCallback('Token is missing...');
-        return;
-      }
-      response.text().then((token) => {
-        successCallback(secretResponse, token);
-      })
+      var ok = response.ok;
+      response.text().then((text) => {
+        if (ok) {
+          successCallback(secretResponse, text);
+        } else {
+          errorCallback(text);
+        }
+      });
     })
 	}
 
