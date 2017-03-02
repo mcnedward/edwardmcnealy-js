@@ -9,5 +9,16 @@ module.exports = {
     request.post(url, (err, response, body) => {
       mcnedward.handleServerResponse(err, response.statusCode, body, res);
     });
+  },
+  verifyAndContinue: (req, res, next) => {
+    var secretResponse = req.query.secretResponse;
+    var url = mcnedward.url + '/api/recaptcha/verify?secretResponse=' + secretResponse;
+
+    request.post(url, (err, response, body) => {
+      mcnedward.handleServerResponse(err, response.statusCode, body, res, false, (responseData) => {
+        req.token = responseData;
+        next();
+      });
+    });
   }
 }

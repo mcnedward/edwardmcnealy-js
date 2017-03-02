@@ -5,10 +5,11 @@
  * @param {*} body 
  * @param {*} res 
  * @param {*} isJson 
+ * @param {*} callback If the callback is defined, we're using this as a middleware function, and we should call callback to continue. 
  */
 module.exports = {
   url: 'http://localhost:8080',
-  handleServerResponse: (err, statusCode, body, res, isJson) => {
+  handleServerResponse: (err, statusCode, body, res, isJson, callback) => {
     if (err) {
       console.warn(err);
       res.status(400).send(err);
@@ -20,11 +21,18 @@ module.exports = {
         result = {};
       }
       if (statusCode === 200) {
+        var responseData;
         if (isJson) {
           res.setHeader('Content-Type', 'application/json');
-          res.status(200).send(JSON.stringify(result.entity));
+          responseData = JSON.stringify(result.entity);
         } else {
-          res.status(200).send(result.entity);
+          responseData = result.entity;
+        }
+        if (callback) {
+          callback(responseData);
+          return;
+        } else {
+          res.status(200).send(responseData);
         }
       } else {
         var message = result.errors && result.errors.length > 0 ? result.errors[0] : 'Something went wrong with your request...';

@@ -1,11 +1,13 @@
 const express = require('express'),
-      recaptchaRouteController = require('./recaptchaRouteController'),
-      numberPrinterRouteController = require('./numberPrinterRouteController'),
+      iiRouteController = require('./iiRouteController'),
       parserRouteController = require('./parserRouteController'),
       colorZoneRouteController = require('./colorZoneRouteController'),
+      numberPrinterRouteController = require('./numberPrinterRouteController'),
+      recaptchaRouteController = require('./recaptchaRouteController'),
       router = express.Router();
 
-router.route('/recaptcha/verify').post(recaptchaRouteController.verify);
+router.route('/ii/app').get(recaptchaRouteController.verifyAndContinue, iiRouteController.app);
+router.route('/ii/lib').get(recaptchaRouteController.verifyAndContinue, iiRouteController.library);
 
 router.route('/parser/files').post(parserRouteController.files);
 router.route('/parser/parse').post(parserRouteController.parse);
@@ -17,5 +19,7 @@ router.route('/color-zones/polygons/:zone').get(colorZoneRouteController.polygon
 router.route('/color-zones/hover-regions').get(colorZoneRouteController.hoverRegions);
 
 router.route('/number-printer').get(numberPrinterRouteController.convert);
+
+router.route('/recaptcha/verify').post(recaptchaRouteController.verify);
 
 module.exports = router;
