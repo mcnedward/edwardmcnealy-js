@@ -28,26 +28,25 @@
   <script src="js/modernizr"></script>
   <script src="js/app.js"></script>
   <script src="js/services/userService.js"></script>
-  <script src="js/services/requestService.js"></script>
   <script src="js/services/recaptchaService.js"></script>
   <script src="js/services/modalService.js"></script>
   <script src="js/appController.js"></script>
   <script src="js/core/contactController.js"></script>
   <script src="js/ii/iiController.js"></script>
-  <script src="js/parser/package.js"></script>
-  <script src="js/parser/file.js"></script>
-  <script src="js/parser/directory.js"></script>
   <script src="js/parser/structureDirective.js"></script>
   <script src="js/parser/directoryDirective.js"></script>
   <script src="js/parser/fileUploadDirective.js"></script>
+  <script src="js/parser/package.js"></script>
+  <script src="js/parser/file.js"></script>
+  <script src="js/parser/directory.js"></script>
   <script src="js/parser/parserService.js"></script>
   <script src="js/parser/parserController.js"></script>
+  <script src="js/colorZones/colorZonesController.js"></script>
   <script src="js/colorZones/models/latLng.js"></script>
   <script src="js/colorZones/models/polygon.js"></script>
   <script src="js/colorZones/models/timeZone.js"></script>
   <script src="js/colorZones/colorPicker.js"></script>
   <script src="js/colorZones/colorZonesViewModel.js"></script>
-  <script src="js/colorZones/colorZonesController.js"></script>
   <script src="js/colorZones/renderer.js"></script>
   <script src="js/colorZones/timeZoneService.js"></script>
   <script src="js/colorZones/tooltipService.js"></script>
@@ -78,7 +77,9 @@
     </nav>
 
     <div id="wrapper">
-      <div data-ui-view data-ng-class="{container: useContainer, 'container-fluid': useContainerFluid, 'pt-5': !inRoot}"></div>
+      <div data-ng-class="{container: useContainer, 'container-fluid': useContainerFluid, 'pt-5': !inRoot}">
+        <ui-view></ui-view>
+      </div>
     </div>
 
     <footer>

@@ -70,6 +70,7 @@ angular.module('mcnedward')
                 });
               } else {
                 $scope.dragAreaMessage = 'Analyzing your files...';
+                $scope.$apply();
                 response.json().then((directoryResponse) => {
                   parserService.saveDirectory(directoryResponse);
 

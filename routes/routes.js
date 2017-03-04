@@ -3,8 +3,11 @@ const express = require('express'),
       parserRouteController = require('./parserRouteController'),
       colorZoneRouteController = require('./colorZoneRouteController'),
       numberPrinterRouteController = require('./numberPrinterRouteController'),
+      contactRouteController = require('./contactRouteController'),
       recaptchaRouteController = require('./recaptchaRouteController'),
       router = express.Router();
+
+// These are all API routes, so to call them the url would start with /api (See server.js for the setup)
 
 router.route('/ii/app').get(recaptchaRouteController.verifyAndContinue, iiRouteController.app);
 router.route('/ii/lib').get(recaptchaRouteController.verifyAndContinue, iiRouteController.library);
@@ -19,6 +22,8 @@ router.route('/color-zones/polygons/:zone').get(colorZoneRouteController.polygon
 router.route('/color-zones/hover-regions').get(colorZoneRouteController.hoverRegions);
 
 router.route('/number-printer').get(numberPrinterRouteController.convert);
+
+router.route('/contact').post(recaptchaRouteController.verifyAndContinue, contactRouteController.contact);
 
 router.route('/recaptcha/verify').post(recaptchaRouteController.verify);
 

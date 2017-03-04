@@ -4,8 +4,8 @@
 'use strict';
 
 angular.module('mcnedward')
-.service('parserService', ['$rootScope', 'requestService', '$http',
-                           function($rootScope, requestService, $http) {
+.service('parserService', ['$rootScope', '$http',
+                           function($rootScope, $http) {
 
 	var parserService = {};
 

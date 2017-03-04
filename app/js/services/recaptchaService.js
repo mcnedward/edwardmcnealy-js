@@ -4,8 +4,8 @@
 'use strict';
 
 angular.module('mcnedward')
-.factory('recaptchaService', ['$rootScope', 'requestService',
-   function ($rootScope, requestService) {
+.factory('recaptchaService', [
+   function () {
 	
 	var recaptchaService = {}
 	

@@ -3,8 +3,8 @@
  */
 'use strict';
 angular.module('mcnedward')
-.controller('NumberPrinterCtrl', ['$rootScope', '$scope', '$window', 'requestService',
-	function NumberPrinterCtrl($rootScope, $scope, $window, requestService) {
+.controller('NumberPrinterCtrl', ['$scope',
+	function NumberPrinterCtrl($scope) {
 	
   $scope.result = '';
 

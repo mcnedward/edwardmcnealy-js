@@ -1,26 +1,3 @@
-<script>
-  // $(document).ready(function () {
-  //   var renderer = new Renderer();
-  //   var timeZoneService = new TimeZoneService(renderer.width());
-  //   var colorPicker = new ColorPicker();
-  //   var model = new ColorZonesViewModel(renderer, timeZoneService, colorPicker);
-  //   // Figure out why I need this override here...
-  //   ko.options.useOnlyNativeEvents = true;
-  //   ko.applyBindings(model, $('#main')[0]);
-
-  //   var tooltipService = new TooltipService([
-  //     { id: $('#canvasContainer'), timeout: 8 },
-  //     { id: $('#hoursControl'), timeout: 3 },
-  //     { id: $('#minutesControl'), timeout: 3 },
-  //     { id: $('#secondsControl'), timeout: 3 },
-  //     { id: $('#opacityControl'), timeout: 4 },
-  //     { id: $('#showTimesControl'), timeout: 6 },
-  //     { id: $('#showColorsControl'), timeout: 6 }
-  //   ]);
-  //   tooltipService.loadToolips();
-  // });
-</script>
-
 <div id="main" class="container-fluid pb-4">
   <div id="content" class="mx-auto d-block" data-bind="style: {width: width}">
     <div id="canvasContainer" class="" data-animation="false" data-placement="bottom" title="The regions on the map will be colored with a hex based on the current time in their time zone.">

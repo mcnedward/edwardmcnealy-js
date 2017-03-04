@@ -3,50 +3,20 @@
  */
 'use strict';
 angular.module('mcnedward')
-.controller('ContactCtrl', ['$scope', 'requestService',
-	function ContactCtrl($scope, requestService) {
+.controller('ContactCtrl', ['$scope',	function ContactCtrl($scope) {
 
 	$scope.contactInfo = {};
 	$scope.isFormSubmitted = false;
 	$scope.contactSuccessMessage = '';
 	$scope.contactErrorMessage = '';
+
 	function clear() {
 		$scope.contactSuccessMessage = '';
 		$scope.contactErrorMessage = '';
 	}
 	function showError(message) {
+    clear();
 		$scope.contactErrorMessage = message;
-	}
-	function handleErrorResponse(errorResponse) {
-		var errorMessage = '', 
-		data = errorResponse.data,
-		errors = data.errors ? data.errors : [];
-	
-		if (errors.length > 0) {
-			for (var i = 0; i < errors.length; i++) {
-				errorMessage += errors[i];
-			}
-		} else {
-			errorMessage = 'Something went wrong when trying to send your message... Please try again.';
-		}
-		showError(errorMessage);
-		$scope.isisFormSubmitted = false;
-	}
-	function sendMessage(secretResponse, token, contactInfo) {
-		var url = '/api/contact?secretResponse=' + secretResponse + '&requestToken=' + token;
-		requestService.sendRequest(url, 'POST', {data: contactInfo}).then(
-			function(response) {
-				var responseMessage = response.data ? response.data.entity : null;
-				if (responseMessage === null) {
-					console.log('No response...');
-					return;					
-				}
-				$scope.contactSuccessMessage = responseMessage;
-				// Trigger Google Analytic event
-				ga('send', 'event', 'Contact', 'Email', 'From: ' + contactInfo.email + ' - Subject: ' + contactInfo.subject);
-			}, function (errorResponse) {
-				handleErrorResponse(errorResponse);
-			});
 	}
 	
 	$scope.submitContact = function(form, contactInfo) {
@@ -70,21 +40,30 @@ angular.module('mcnedward')
 		}
 
 		$scope.contactSuccessMessage = 'Sending...';		
-		var url = '/api/captcha/verify?secretResponse=' + secretResponse;
-		requestService.sendRequest(url, 'POST').then(
-			function(response) {
-				var data = response.data;
-				var token = data ? data.entity : null;
-				if (!token || token === '') {
-					showError('Token is missing...');
-					$scope.isFormSubmitted = false;
-					return;
-				}
-				sendMessage(secretResponse, token, contactInfo);
-			},
-			function(errorResponse) {
-				handleErrorResponse(errorResponse);
-			});
+		var url = '/api/contact?secretResponse=' + secretResponse;
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(contactInfo)
+    }).then((response) => {
+      if (!response.ok) {
+        response.text().then((text) => {
+          showError(text);
+          $scope.isFormSubmitted = false;
+          $scope.$apply();
+        });
+      } else {
+        response.text().then((text) => {
+          $scope.contactSuccessMessage = text;
+          $scope.$apply();
+          // Trigger Google Analytic event
+          ga('send', 'event', 'Contact', 'Email', 'From: ' + contactInfo.email + ' - Subject: ' + contactInfo.subject);
+        })
+      }
+    })
 	}
 	
 	$scope.checkLength = function(value) {
