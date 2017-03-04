@@ -1,7 +1,7 @@
 <div>
 	<div class="directory-container" data-ng-show="isRealDirectory">
 		<span class="ebtn ebtn-gray ebtn-full" data-ng-click="showContents=!showContents">
-			{{name}}    <i class="glyphicon directory-icon" data-ng-class="showContents ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down'"></i>
+			{{name}} <i class="fa" data-ng-class="showContents ? 'fa-chevron-down' : 'fa-chevron-right'" aria-hidden="true"></i>
 		</span>
 	</div>
 	<div ng-if="showContents || !isRealDirectory" class="animation">

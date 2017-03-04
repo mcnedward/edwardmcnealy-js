@@ -38,7 +38,9 @@
 				<div data-ng-show="form.$submitted || form.recaptcha" class="text-danger text-xs-center text-md-left">You need to complete the reCaptcha!</div>
 			</div>
 			<div class="col-md-6">
-				<span class="ebtn ebtn-full font-lg" data-ng-class="isFormSubmitted ? 'ebtn-disabled' : 'ebtn-green'" data-ng-click="submitContact(form, contactInfo)">Contact</span>
+				<span class="ebtn ebtn-full font-lg" data-ng-class="isFormSubmitted ? 'ebtn-disabled' : 'ebtn-green'" data-ng-click="submitContact(form, contactInfo)">
+          <i class="fa fa-envelope" aria-hidden="true"></i> Contact
+        </span>
 			</div>
 		</div>
 	</form>

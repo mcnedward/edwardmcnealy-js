@@ -20,6 +20,7 @@ if (global.environment === 'dev') {
   
   // Modules
   var modules = __dirname + '/node_modules';
+  var lib = path.join(__dirname, 'lib');
   app.use('/js/tether', express.static(path.join(modules, './tether/dist/js/tether' + jsExt)));
   app.use('/js/bootstrap', express.static(path.join(modules, './bootstrap/dist/js/bootstrap' + jsExt)));
   app.use('/js/jquery', express.static(path.join(modules, './jquery/dist/jquery' + jsExt)));
@@ -31,9 +32,9 @@ if (global.environment === 'dev') {
   app.use('/js/knockout', express.static(path.join(modules, './knockout/build/output/knockout-latest' + jsExt)));
   app.use('/js/moment', express.static(path.join(modules, './moment/min/moment' + jsExt)));
   app.use('/js/moment-timezone', express.static(path.join(modules, './moment-timezone/builds/moment-timezone-with-data' + jsExt)));
-  app.use('/js/classie', express.static(path.join(__dirname, 'lib', 'classie' + jsExt)));
-  app.use('/js/cssParser', express.static(path.join(__dirname, 'lib', 'cssParser' + jsExt)));
-  app.use('/js/modernizr', express.static(path.join(__dirname, 'lib', 'modernizr' + jsExt)));
+  app.use('/js/classie', express.static(path.join(lib, 'classie' + jsExt)));
+  app.use('/js/cssParser', express.static(path.join(lib, 'cssParser' + jsExt)));
+  app.use('/js/modernizr', express.static(path.join(lib, 'modernizr' + jsExt)));
   app.use('/css/tether', express.static(path.join(modules, './tether/dist/css/tether' + cssExt))); 
   app.use('/css/bootstrap', express.static(path.join(modules, './bootstrap/dist/css/bootstrap' + cssExt)));
   app.use('/css', express.static(path.join(modules, './bootstrap/dist/css')));

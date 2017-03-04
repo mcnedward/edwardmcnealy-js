@@ -102,20 +102,26 @@ h1, h2, h3, h4, h5, h6 {
 .portfolio-main {
 	.font-lg;
 }
-.logo-links {
+
+footer {
   background-color: @red;
-  img {
-	vertical-align: middle;
-  }
-  .logo:hover {
-    opacity: 0.5;
-    position: relative;
-    top: 2px;
-  }
-  .copyright {
-    vertical-align: sub;
+}
+.logo {
+  font-size: 40px;
+  a {
+    color: @black;
   }
 }
+.logo:hover {
+  a {
+    color: @white;
+  }
+}
+.copyright {
+  font-size: 1.2em;
+  vertical-align: super;
+}
+
 .ii-recaptcha > div {
 	margin: 0 auto;
 }
@@ -127,23 +133,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media only screen and (min-width : 768px) {
-	.logo-links {
-		padding: 5px 0 5px;
-	}
-	.logo {
-		position: relative;
-		top: 2px;
-	}
-	.content-recaptcha > div {
+	.conpmntent-recaptcha > div {
 		margin: inherit;
 	}
 	.content-recaptcha {
 		text-align: left;
 	}
-}
-
-[ng\:cloak], [ng-cloak], .ng-cloak {
-    display: none;
 }
 #loader {
   position: fixed; 
@@ -154,9 +149,12 @@ h1, h2, h3, h4, h5, h6 {
   background: @ghost-white; 
   z-index:9999;
 }
-
 .cursor-pointer {
   cursor: pointer;
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none;
 }
 
 /* --------------------

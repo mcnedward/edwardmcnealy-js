@@ -27,6 +27,6 @@ angular.module('mcnedward')
       ga('set', 'page', toState.name === 'app' ? '/index.html' : toState.url + '.html');
       ga('send', 'pageview');
     });
-    $("#loader").fadeOut(200);
+    $("#loader").fadeOut(500);
 }]);
 	
