@@ -5,7 +5,7 @@ function TimeZoneService(mapWidth) {
 
   // This is an observable that the caller passes in
   // It will be updated as the service finishes each of it's requests
-  var _timeZoneObservables;
+  var _timeZonesObservable;
   var _timeZoneRegionsObservable;
   var _centerLat;
   var _centerLng;
@@ -19,13 +19,13 @@ function TimeZoneService(mapWidth) {
     _zoom = zoom;
   };
 
-  self.loadTimeZones = function (errorCallback, _timeZoneObservables, timeZoneRegionsObservable) {
+  self.loadTimeZones = function (errorCallback, timeZonesObservable, timeZoneRegionsObservable) {
     _errorCallback = errorCallback;
     if (_centerLat === undefined || _centerLng === undefined || _zoom === undefined) {
       _errorCallback('You need to call TimeZoneService.setCenterCoordinates(centerLat, centerLng, zoom) first!');
       return;
     }
-    _timeZonesObservable = _timeZoneObservables;
+    _timeZonesObservable = timeZonesObservable;
     _timeZoneRegionsObservable = timeZoneRegionsObservable;
 
     // Load the time zone regions
@@ -55,7 +55,7 @@ function TimeZoneService(mapWidth) {
         for (var i = 0; i < hoverRegions.length; i++) {
           var timeZone = getTimeZone(hoverRegions[i]);
           loadZonePolygons(timeZone);
-          _timeZoneObservables().push(timeZone);
+          _timeZonesObservable().push(timeZone);
         }
 
         // All time zones are loaded, so we can now load the bounding boxes
@@ -64,8 +64,8 @@ function TimeZoneService(mapWidth) {
     });
 
     self.reloadCoordinates = function() {
-      for (var i = 0; i < _timeZoneObservables().length; i++) {
-        var coords = _timeZoneObservables()[i].coords;
+      for (var i = 0; i < _timeZonesObservable().length; i++) {
+        var coords = _timeZonesObservable()[i].coords;
         for (var j = 0; j < coords.length; j++) {
           coords[j] = getXY(coords[j].x, coords[j].y);
         }
@@ -83,11 +83,11 @@ function TimeZoneService(mapWidth) {
           var boundingBoxes = JSON.parse(json);
           for (var i = 0; i < boundingBoxes.length; i++) {
             var box = boundingBoxes[i];
-            for (var j = 0; j < _timeZoneObservables().length; j++) {
-              if (_timeZoneObservables()[j].matchesId(box.name)) {
+            for (var j = 0; j < _timeZonesObservable().length; j++) {
+              if (_timeZonesObservable()[j].matchesId(box.name)) {
                 var xyMin = getXY(box.boundingBox.ymin, box.boundingBox.xmin);
                 var xyMax = getXY(box.boundingBox.ymax, box.boundingBox.xmax);
-                _timeZoneObservables()[j].boundingBox = {
+                _timeZonesObservable()[j].boundingBox = {
                   xyMin: xyMin,
                   xyMax: xyMax
                 };

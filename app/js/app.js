@@ -1,6 +1,7 @@
 var app = angular.module('mcnedward', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'vcRecaptcha'])
 .config([ '$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider',
 	function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
+  'use strict';
 
 	$stateProvider
     .state('app', {
@@ -56,32 +57,4 @@ var app = angular.module('mcnedward', ['ui.router', 'ui.bootstrap', 'ngAnimate',
   }]);
 
 	$locationProvider.html5Mode(true);
-
-}]);
-app.run([function() {
-	$(document).ready(function() {
-		$(document).on('focus.material', '.form-group-material .form-control:input', function (e) {
-		    var $formGroup = $(e.target);
-		    if (!$formGroup.hasClass('touched')) {
-		      $formGroup.addClass('touched');
-		    }
-		});
-
-		$(document).on('focusout.material', '.form-group-material .form-control:input', function (e) {
-		    var $formGroup = $(e.target);
-		    if ($formGroup.val() === '') {
-		      $formGroup.removeClass('touched');
-		    }
-		    if ($formGroup.hasClass('dirty') && $formGroup.val() === '') {
-		      $formGroup.removeClass('dirty');
-		    }
-		});
-
-		$(document).on('keydown.material', '.form-group-material .form-control:input', function (e) {
-			var $formGroup = $(e.target);
-			if (!$formGroup.hasClass('dirty') && $formGroup.val() !== '') {
-				$formGroup.addClass('dirty');
-			}
-		});
-	});
 }]);

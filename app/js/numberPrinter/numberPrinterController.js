@@ -1,10 +1,10 @@
 /**
  * Created by Edward on 11/8/2014.
  */
-'use strict';
 angular.module('mcnedward')
 .controller('NumberPrinterCtrl', ['$scope',
 	function NumberPrinterCtrl($scope) {
+  'use strict';
 	
   $scope.result = '';
 
@@ -13,19 +13,19 @@ angular.module('mcnedward')
       $scope.result = json.englishWord;
       $scope.$apply();
     });
-	}
+	};
 	
 	$scope.convertToRomanNumeral = function() {
     convert((json) => {
       $scope.result = json.romanNumeral;
       $scope.$apply();
     });
-	}
+	};
 
   function convert(callback) {
     clearText();
 		var number = $scope.number;
-		if (number == '') {
+		if (number === '') {
 			$scope.errorMessage = 'You need to enter something!';
 			return;
 		}

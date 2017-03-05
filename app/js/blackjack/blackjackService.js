@@ -1,9 +1,9 @@
 /**
  * Created by Edward on 11/24/2014.
  */
-'use strict';
 angular.module('mcnedward')
 .service('blackjackService', ['$rootScope', 'playerService', function($rootScope, playerService) {
+  'use strict';
 	
 	var blackjackService = {};
 	var suits = ['clubs', 'spades', 'diamonds', 'hearts'];
@@ -60,7 +60,7 @@ angular.module('mcnedward')
 		shuffle();
 		//fixDeck();
 		for (var x = 0; x < 4; x++) {
-			if ((x % 2) == 0) {
+			if ((x % 2) === 0) {
 				dealCard(playerService.getPlayer());
 			} else {
 				if (x == 3)
@@ -69,7 +69,7 @@ angular.module('mcnedward')
 					dealCard(playerService.getDealer());
 			}
 		}
-	}
+	};
 	
 	function dealCard(user, faceDown) {
 		var card = cards[0];
@@ -82,7 +82,7 @@ angular.module('mcnedward')
 	
 	blackjackService.hitMe = function(user) {
 		dealCard(user);
-	}
+	};
 	
 	blackjackService.stay = function() {
 		var dealer = playerService.getDealer();
@@ -104,7 +104,7 @@ angular.module('mcnedward')
 			$rootScope.$broadcast('playerWon');
 		}
 		$rootScope.$broadcast('showCards');
-	}
+	};
 	
 	// Fischer-Yates shuffle
 	function shuffle() {
@@ -148,7 +148,7 @@ angular.module('mcnedward')
 				playerService.getDealer().table.find($('#' + card.id)).attr('src', card.src);
 			}			
 		}
-	}
+	};
 
 	return blackjackService;
 }]);

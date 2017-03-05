@@ -1,10 +1,9 @@
 /**
  * Created by Edward on 2/19/15.
  */
-'use strict';
 angular.module('mcnedward')
-.directive('playingCard', ['$rootScope',
-	function($rootScope) {
+.directive('playingCard',	function() {
+  'use strict';
 		
 	return {
 		scope: {
@@ -30,4 +29,4 @@ angular.module('mcnedward')
         },
 		template: '<img id="{{card.id}}" class="card-img"/>'
 	};
-}]);
+});

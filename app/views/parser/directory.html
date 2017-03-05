@@ -5,13 +5,11 @@
 		</span>
 	</div>
 	<div ng-if="showContents || !isRealDirectory" class="animation">
-		<div data-ng-repeat="d in directories track by $index"
-		data-ng-class="{'pl-3': isRealDirectory}">
+		<div data-ng-repeat="d in directories track by $index" data-ng-class="{'pl-3': isRealDirectory}">
 			<directory name="d.name" id="d.id"
-			directories="d.directories" classes="d.classes"></directory>
+			  directories="d.directories" classes="d.classes"></directory>
 		</div>
-		<div data-ng-repeat="c in classes track by $index"
-		data-ng-class="{'pl-3': isRealDirectory}">
+		<div data-ng-repeat="c in classes track by $index" data-ng-class="{'pl-3': isRealDirectory}">
 			<span class="ebtn ebtn-blue ebtn-full" data-ng-click="selectClass(id, c.id)">
 				{{c.fileName}}
 			</span>

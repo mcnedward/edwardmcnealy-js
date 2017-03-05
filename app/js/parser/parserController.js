@@ -1,11 +1,11 @@
 /**
  * Created by Edward on 2/26/2016.
  */
-'use strict';
 
 angular.module('mcnedward')
 .controller('ParserCtrl', ['$rootScope', '$scope', '$window', 'parserService', 'recaptchaService', 'modalService',
   function ParserCtrl($rootScope, $scope, $window, parserService, recaptchaService, modalService) {
+  'use strict';
 
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
     modalService.showModal('deviceModal');
@@ -22,7 +22,7 @@ angular.module('mcnedward')
 
   $('#file-upload').change(function () {
     var files = this.files;
-    if (!files || files.length == 0) {
+    if (!files || files.length === 0) {
       console.log('No files selected...');
       return;
     }
@@ -109,8 +109,7 @@ angular.module('mcnedward')
     $scope.load(true);
     $scope.dragAreaMessage = 'Uploading your files...';
     recaptchaService.verify(uploadInfo.recaptchaResponse, uploadFiles, errorHandler);
-    // uploadFiles('secret', 'token');
-  }
+  };
 
   $scope.selectClassObject = function (file) {
     for (var i = 0; i < $scope.classObjects.length; i++) {
@@ -123,7 +122,7 @@ angular.module('mcnedward')
     }
     file.isSelected = true;
     styleLineNumbers($scope.classObject);
-  }
+  };
 
   $scope.filesDropped = function (directory) {
     $scope.fileName = directory.name ? directory.name : directory.uploadFiles.length + ' Files';
@@ -131,23 +130,23 @@ angular.module('mcnedward')
     $scope.fileSelected = true;
     $scope.uploadDirectory = directory;
     $scope.$apply();	// Need to apply because this is coming from the fileUploadDirective
-  }
+  };
 
   $scope.moveToLine = function (content) {
     var lineNumber = content.lineNumber;
     var element = $('#' + lineNumber);
-    element.addClass('line-animation-in')
+    element.addClass('line-animation-in');
     setTimeout(() => {
-      element.addClass('line-animation-out')
+      element.addClass('line-animation-out');
       setTimeout(() => {
         element.removeClass('line-animation-in');
         element.removeClass('line-animation-out');
       }, 1500);
     }, 3000);
-    $('html, body').animate({
+    $('#classContent').animate({
       scrollTop: element.offset().top - 200
     }, 500);
-  }
+  };
   $rootScope.$on('selectClass', function (e, args) {
     var classObject = searchDirectory($scope.directory, args.directoryId, args.classId);
     if (classObject) {
@@ -158,15 +157,16 @@ angular.module('mcnedward')
     }
   });
   function searchDirectory(directory, directoryId, classId) {
-    if (directoryId == directory.id) {
+    var classObject;
+    if (directoryId === directory.id) {
       if (directory.classes) {
-        var classObject = searchClassesInDirectory(directory.classes, classId)
+        classObject = searchClassesInDirectory(directory.classes, classId);
         if (classObject) return classObject;
       }
     }
     for (var i = 0; i < directory.directories.length; i++) {
       var childDirectory = directory.directories[i];
-      var classObject = searchDirectory(childDirectory, directoryId, classId);
+      classObject = searchDirectory(childDirectory, directoryId, classId);
       if (classObject) return classObject;
     }
   }
@@ -241,25 +241,4 @@ angular.module('mcnedward')
     }
     pre.appendTo('#classContent');
   }
-
-  // Source: http://stackoverflow.com/questions/5902822/stopping-fixed-position-scrolling-at-a-certain-point
-  $.fn.followTo = function (pos) {
-    var $this = this,
-      $window = $(window),
-      $classContent = $('#classContentContainer');
-
-    $window.scroll(function (e) {
-      if ($window.scrollTop() > pos) {
-        $this.removeClass('class-structure');
-        $this.addClass('class-structure-fixed');
-        $classContent.addClass('class-content-fixed');
-      } else {
-        $this.removeClass('class-structure-fixed');
-        $classContent.removeClass('class-content-fixed');
-        $this.addClass('class-structure');
-      }
-    });
-  };
-  $('#classStructure').followTo(380);
-
 }]);

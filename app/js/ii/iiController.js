@@ -1,10 +1,10 @@
 /**
  * Created by Edward on 10/7/2014.
  */
-'use strict';
 angular.module('mcnedward')
 .controller('IICtrl', ['$scope', 'modalService',
 	function IICtrl($scope, modalService) {
+  'use strict';
 	
 	$scope.iiInfo = {};
 	$scope.isFormSubmitted = false;
@@ -29,11 +29,11 @@ angular.module('mcnedward')
 	$scope.openDownloadForApp = function() {
 		clearAppError();
 		modalService.showModal('downloadAppModal');
-	}
+	};
 	$scope.openDownloadForLib = function() {
 		clearLibError();
 		modalService.showModal('downloadLibModal');
-	}
+	};
 
 	$scope.downloadIIApp = function(form, iiAppInfo) {
 		if ($scope.isAppFormSubmitted) return;
@@ -46,7 +46,7 @@ angular.module('mcnedward')
 
     var downloadUrl = '/api/ii/app?secretResponse=' + iiAppInfo.recaptchaResponse;
     window.location.href = downloadUrl;
-	}
+	};
 	$scope.downloadIILib = function(form, iiLibInfo) {
 		if ($scope.isLibFormSubmitted) return;
 		form.$setSubmitted();
@@ -58,6 +58,6 @@ angular.module('mcnedward')
 
     var downloadUrl = '/api/ii/lib?secretResponse=' + iiLibInfo.recaptchaResponse;
     window.location.href = downloadUrl;
-	}
+	};
 	
 }]);

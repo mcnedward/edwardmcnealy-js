@@ -1,11 +1,12 @@
 /**
  * Created by Edward on 11/24/2014.
  */
-'use strict';
 angular.module('mcnedward')
 .service('playerService', ['$rootScope', function($rootScope) {
-	var playerService = {},
-		users = {};
+  'use strict';
+	
+  var playerService = {},
+	    users = {};
 
 	function updateUser(user) {
 		users[user.type] = user;
@@ -19,22 +20,22 @@ angular.module('mcnedward')
 	}
 	
 	playerService.getPlayer = function() {
-		return users['player'];
-	}
+		return users.player;
+	};
 	playerService.getDealer = function() {
-		return users['dealer'];
-	}
+		return users.dealer;
+	};
 	playerService.resetUsers = function() {
 		initUsers();
-	}	
+	};
 	// Find the user based on the passed in user's type, then update
 	playerService.updateUser = function(user) {
 		updateUser(user);
-	}
+	};
 	// Update all playerService
 	playerService.updateUsers = function(users) {
 		updateUsers(users);
-	}
+	};
 	playerService.addCard = function(user, card) {
 		user.cards.push(card);
 		user.handValue = user.handValue + card.value;
@@ -45,16 +46,16 @@ angular.module('mcnedward')
 			$rootScope.$broadcast('21', user);
 			$rootScope.hit21 = true;
 		}
-	}
+	};
 	playerService.addChip = function(amount) {
 		users.player.chips['chip' + amount + 's']++;
 		users.player.bet = users.player.bet + amount;
 		updateUser(users.player);
-	}
+	};
 	playerService.clearBet = function() {
 		users.player.bet = 0;
 		users.player.chips = getChips();	
-	}
+	};
 	playerService.userWon = function(userType) {
 		var player = users.player;
 		var dealer = users.dealer;
@@ -70,7 +71,7 @@ angular.module('mcnedward')
 		player.bet = 0;
 		player.chips = getChips();
 		updateUsers([player, dealer]);
-	}
+	};
 	
 	// Called when service is created, and when a new deck is dealt
 	function initUsers() {
@@ -89,12 +90,12 @@ angular.module('mcnedward')
 		if (localStorage.users && localStorage.users.length > 2) {
 			var savedUsers = getSavedUsers();
 			var player = savedUsers.player;
-			var dealer = dealer = savedUsers.dealer;
+			var dealer = savedUsers.dealer;
 			clearHand(player);
 			clearHand(dealer);
 			updateUsers([player, dealer]);
 		} else {
-			users['player'] = {
+			users.player = {
 				table: $('#pTable'),
 				cards: [],
 				handValue: 0,
@@ -105,7 +106,7 @@ angular.module('mcnedward')
 				wins: 0,
 				loses: 0,
 			};
-			users['dealer'] = {
+			users.dealer = {
 				table: $('#dTable'),
 				cards: [],
 				handValue: 0,
@@ -154,7 +155,7 @@ angular.module('mcnedward')
 			value = value + user.cards[x].value;
 		}
 		user.handValue = value;
-		updateUser = user;
+		updateUser(user);
 	}
 	
 	return playerService;

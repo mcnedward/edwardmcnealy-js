@@ -1,9 +1,9 @@
 /**
  * Created by Edward on 10/11/2016.
  */
-'use strict';
 angular.module('mcnedward')
 .controller('ContactCtrl', ['$scope',	function ContactCtrl($scope) {
+  'use strict';
 
 	$scope.contactInfo = {};
 	$scope.isFormSubmitted = false;
@@ -29,12 +29,12 @@ angular.module('mcnedward')
 		clear();
 		
 		var reCaptchaError = 'Sorry, but something went wrong with the reCaptcha. Please refresh the page and try again.';
-		if (grecaptcha == null) {
+		if (grecaptcha === null) {
 			showError(reCaptchaError);
 			return;
 		}
 		var secretResponse = contactInfo.recaptchaResponse;
-		if (secretResponse == null) {
+		if (secretResponse === null) {
 			showError(reCaptchaError);
 			return;
 		}
@@ -61,16 +61,16 @@ angular.module('mcnedward')
           $scope.$apply();
           // Trigger Google Analytic event
           ga('send', 'event', 'Contact', 'Email', 'From: ' + contactInfo.email + ' - Subject: ' + contactInfo.subject);
-        })
+        });
       }
-    })
-	}
+    });
+	};
 	
 	$scope.checkLength = function(value) {
 		var length = value ? value.length : 0;
 		if (!length) length = 0;
 		return length;
-	}
+	};
 	$scope.emailMaxLength = 100;
 	$scope.subjectMaxLength = 100;
 	$scope.messageMaxLength = 1000;

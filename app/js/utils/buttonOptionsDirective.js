@@ -1,10 +1,10 @@
 /**
  * Created by Edward on 2/19/15.
  */
-'use strict';
 angular.module('mcnedward')
 .directive('buttonoptions', [
 	function() {
+  'use strict';
 
 	return {
 		scope: {
@@ -16,10 +16,10 @@ angular.module('mcnedward')
 		controller: function($scope) {
 			$scope.confirm = function() {
 				$scope.confirmAction();
-			}
+			};
 			$scope.cancel = function() {
 				$scope.cancelAction();
-			}
+			};
 		},
 		link: function(scope, element, attrs) {
 			scope.title = attrs.confirmTitle;
@@ -31,7 +31,7 @@ angular.module('mcnedward')
 			'<button data-ng-click="confirm()" class="btn ebtn-green">{{title}}</button>' + 
 			'<button data-ng-click="cancel()" class="btn ebtn-red cancelBtn">{{cancelTitle}}</button></div>'
 	};
-}])
+}]);
 app.directive('ngEnter', function() {
 	return function(scope, element, attrs) {
 		element.bind('keydown keypress', function(event) {

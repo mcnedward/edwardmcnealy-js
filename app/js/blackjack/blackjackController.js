@@ -1,10 +1,10 @@
 /**
  * Created by Edward on 11/8/2014.
  */
-'use strict';
 angular.module('mcnedward')
 .controller('BlackjackCtrl', ['$rootScope', '$scope', '$window', 'blackjackService', 'playerService',
 	function BlackjackCtrl($rootScope, $scope, $window, blackjackService, playerService) {
+  'use strict';
 	
 	$scope.player = playerService.getPlayer();
 	$scope.dealer = playerService.getDealer();
@@ -81,17 +81,17 @@ angular.module('mcnedward')
 			updateUsers();
 			toggleOptions(true);
 		}
-	}
+	};
 	
 	// Scope functions
 	$scope.hitMe = function() {
 		blackjackService.hitMe($scope.player);
 		updateUsers();
-	}
+	};
 	$scope.stay = function() {
 		blackjackService.stay();
 		updateUsers();
-	}
+	};
 	$scope.addChip = function(amount) {
 		$scope.message = '';
 		if ($scope.stopBets) {
@@ -104,7 +104,7 @@ angular.module('mcnedward')
 		}
 		playerService.addChip(amount);
 		updateUsers();
-	}
+	};
 	$scope.clearBet = function() {
 		$scope.message = '';
 		if ($scope.stopBets) {
@@ -113,7 +113,7 @@ angular.module('mcnedward')
 			return;
 		}			
 		playerService.clearBet();
-	}
+	};
 	
 	function updateUsers(save) {
 		$scope.player = playerService.getPlayer();

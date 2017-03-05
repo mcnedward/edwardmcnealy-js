@@ -1,10 +1,10 @@
 /**
  * Created by Edward on 2/28/2016.
  */
-'use strict';
 
 angular.module('mcnedward')
 .directive('structure', ['$rootScope', function($rootScope) {
+  'use strict';
 		
 	return {
 		restrict: 'E',

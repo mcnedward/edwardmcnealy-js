@@ -1,13 +1,12 @@
 /**
  * Created by Edward on 10/18/2014.
  */
-'use strict';
 angular.module('mcnedward')
-.factory('modalService', ['$rootScope', '$timeout',
-    function ($rootScope, $timeout) {
+.factory('modalService', ['$timeout',
+  function ($timeout) {
+  'use strict';
 		
 	var modalService = {};
-	
 	var overlay, modal, close;
 
 	function removeModal( hasPerspective ) {
@@ -31,13 +30,13 @@ angular.module('mcnedward')
 			ev.stopPropagation();
 			removeModalHandler();
 		});	
-	}
+	};
 	modalService.closeModal = function() {
 		removeModalHandler();
-	}
+	};
 	modalService.isOpen = function() {
-		return modal != undefined;
-	}
+		return modal !== undefined;
+	};
 	
 	function showLoading(show) {
 		var loadingDiv = $('#pageLoader');

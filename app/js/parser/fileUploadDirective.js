@@ -1,9 +1,9 @@
 /**
  * Created by Edward on 2/28/2016.
  */
-'use strict';
 angular.module('mcnedward')
-.directive('dragAndDrop', ['$rootScope', '$timeout', 'parserService', function($rootScope, $timeout, parserService) {
+.directive('dragAndDrop', ['$rootScope', '$timeout', function($rootScope, $timeout) {
+  'use strict';
 		
 	return {
 		restrict: 'E',
@@ -21,7 +21,7 @@ angular.module('mcnedward')
 				scope.dragAreaMessage = '';
 				scope.dragAreaError = message;
 				console.log(error, message);
-			}			
+      };
 			
 			var firstTime = true;
 			var loading = false;
@@ -42,7 +42,7 @@ angular.module('mcnedward')
 						scope.uploadProgress = 0;
 					}, 3000);
 				}
-			}			
+			};
 			function checkProgress() {
 				// $timeout(function() {
 				// 	parserService.getUploadProgress(scope.secretResponse, scope.token).then((response) => {
@@ -95,7 +95,7 @@ angular.module('mcnedward')
 				var fileId = 1;	// Unique id for identifying the file in the server cache
 				var onError = function(error) {
 					console.log(error);
-				}
+				};
 				
 				function handleDirectory(item, directory, topDirectory) {
 					var reader = item.createReader();
@@ -114,14 +114,14 @@ angular.module('mcnedward')
 											entry.file(function(file) {
 												parentDirectory.uploadFiles.push(file);
 												// Add the fileId to the file name, to be stripped server-side
-												var newFile = new com.mcnedward.app.parser.File(fileId++, file.name);
+												var newFile = new ParserFile(fileId++, file.name);
 												directory.files.push(newFile);
 												return newFile;
 											}, function(e) {
 												console.log(e);
 											});
 										} else {
-											var newDirectory = new com.mcnedward.app.parser.Directory(entry.name, [], []);
+											var newDirectory = new ParserDirectory(entry.name, [], []);
 											// If this is inside a directory, put it in there!
 											if (directory) {
 												directory.directories.push(newDirectory);
@@ -143,7 +143,7 @@ angular.module('mcnedward')
 				if (event) {
 					var dataTransfer = event.dataTransfer;
 					var items = dataTransfer.items;
-					var parentDirectory = new com.mcnedward.app.parser.Directory();
+					var parentDirectory = new ParserDirectory();
 					parentDirectory.uploadFiles = [];	// All of the files to upload
 					if (items.length == 1) {
 						var item = items[0].webkitGetAsEntry();
@@ -174,14 +174,14 @@ angular.module('mcnedward')
 									item.file(function(file) {
 										parentDirectory.uploadFiles.push(file);
 										// Add the fileId to the file name, to be stripped server-side
-										var newFile = new com.mcnedward.app.parser.File(fileId++, file.name);
+										var newFile = new ParserFile(fileId++, file.name);
 										parentDirectory.files.push(newFile);
 										resolve(parentDirectory);
 										return newFile;
 									}, onError);
 								});
 							} else {
-								var newDirectory = new com.mcnedward.app.parser.Directory(item.name, [], []);
+								var newDirectory = new ParserDirectory(item.name, [], []);
 								// If this is inside a directory, put it in there!
 								if (parentDirectory) {
 									parentDirectory.directories.push(newDirectory);

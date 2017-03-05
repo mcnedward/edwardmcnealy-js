@@ -1,16 +1,14 @@
 /**
  * Created by Edward on 10/15/2016.
  */
-'use strict';
-
 angular.module('mcnedward')
-.factory('recaptchaService', [
-   function () {
+.factory('recaptchaService', function () {
+  'use strict';
 	
-	var recaptchaService = {}
+	var recaptchaService = {};
 	
 	recaptchaService.verify = function(secretResponse, successCallback, errorCallback) {
-		if (secretResponse == null) {
+		if (secretResponse === null) {
 			errorCallback('Sorry, but something went wrong with the reCaptcha. Please refresh the page and try again.');
 			return;
 		}
@@ -23,8 +21,8 @@ angular.module('mcnedward')
           errorCallback(text);
         }
       });
-    })
-	}
+    });
+	};
 
 	return recaptchaService;
-}]);
+});

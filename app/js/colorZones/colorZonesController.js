@@ -1,7 +1,7 @@
-'use strict';
 angular.module('mcnedward')
 .controller('ColorZonesCtrl', ['$rootScope', '$scope',
 	function ColorZonesCtrl($rootScope, $scope) {
+  'use strict';
 
   $(document).ready(function () {
     $scope.renderer = new Renderer();
@@ -26,6 +26,6 @@ angular.module('mcnedward')
 
   $rootScope.$on('stopRendering', () => {
     $scope.renderer.stopRendering(true);
-  })
+  });
   
 }]);

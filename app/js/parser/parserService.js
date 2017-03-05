@@ -1,11 +1,10 @@
 /**
  * Created by Edward on 2/26/2016.
  */
-'use strict';
-
 angular.module('mcnedward')
-.service('parserService', ['$rootScope', '$http',
-                           function($rootScope, $http) {
+.service('parserService', ['$http',
+  function($http) {
+  'use strict';
 
 	var parserService = {};
 
@@ -20,7 +19,7 @@ angular.module('mcnedward')
       method: 'POST',
       body: formData
     });
-	}
+	};
 
 	parserService.parseFiles = function(directory, secretResponse, token) {
     directory.uploadFiles = null;
@@ -33,11 +32,11 @@ angular.module('mcnedward')
       },
       body: JSON.stringify(directory)
     });
-	}
+	};
 
 	parserService.getUploadProgress = function(secretResponse, token, responseFunction) {
     return fetch('/api/parser/progress?secretResponse=' + secretResponse + '&requestToken=' + token);
-	}
+	};
 
 	parserService.saveClasses = function(classObjects) {
 		if (classObjects) {
@@ -45,11 +44,11 @@ angular.module('mcnedward')
 			parserService.classObjects = classObjects;
 		} else
 			console.log('No classObjects to save...');
-	}
+	};
 	parserService.getClasses = function() {
 		var classObjects = localStorage.classObjects ? JSON.parse(localStorage.classObjects) : null;
 		return classObjects;
-	}
+	};
 
 	parserService.saveDirectory = function(directory) {
 		if (directory) {
@@ -57,11 +56,11 @@ angular.module('mcnedward')
 			parserService.directory = directory;
 		} else
 			console.log('No directory to save...');
-	}
+	};
 	parserService.getDirectory = function() {
 		var directory = localStorage.directory ? JSON.parse(localStorage.directory) : null;
 		return directory;
-	}
+	};
 
 	return parserService;
 }]);
