@@ -32,7 +32,7 @@ gulp.task('build-scripts', function(cb) {
     }))
     .pipe(sourcemaps.init())
     .pipe(concat('app.min.js'))
-    // .pipe(uglify().on('error', uglifyError))
+    .pipe(uglify().on('error', uglifyError))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/js'));
 })

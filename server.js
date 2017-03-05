@@ -1,9 +1,7 @@
 const express = require('express'),
       app = express(),
-      fs = require('fs'),
       bodyParser = require('body-parser'),
       fileUpload = require('express-fileupload'),
-      request = require('request'),
       path = require('path'),
       routes = require('./routes/routes');
 
@@ -55,18 +53,6 @@ app.use('/api', routes);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'app', 'views', 'index.html'));
 })
-
-function fileResponse(req, res, fileName) {
-  fs.readFile(fileName, 'utf8', function (err, data) {
-    // TODO Handle errors!
-    if (err) {
-      console.trace('Hmmm... Something went wrong when trying to read the file: ' + err);
-      return;
-    }
-    res.setHeader('content-type', 'application/json');
-    res.send(JSON.stringify(data));
-  });
-}
 
 app.listen(3000, function() {
   console.log('edwardmcnealy.com listening on port 3000!');
