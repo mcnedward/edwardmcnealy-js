@@ -32,7 +32,7 @@ module.exports = {
   },
   polygons: (req, res) => {
     var zone = req.params.zone;
-    var fileName = path.join(__dirname, '..', 'data', 'tz_json', 'polygons', zone + '.json');
+    var fileName = path.join(__dirname, '..', 'data', 'tz_json', 'polygons', zone.toLowerCase() + '.json');
     // var fileName = __dirname + '/data/tz_json/polygons/' + zone + '.json';
     fileResponse(req, res, fileName);
   },
