@@ -5,10 +5,15 @@ const express = require('express'),
       path = require('path'),
       routes = require('./routes/routes');
 
-global.environment = 'dev';
+global.environment = 'production';
 
 const modules = path.join(__dirname, 'node_modules'),
-      lib = path.join(__dirname, 'public', 'js', 'lib');
+      lib = path.join(__dirname, 'public', 'js', 'lib'),
+      oneDay = 86400000,
+      options = {
+        maxAge: oneDay,
+        etag: true
+      };
 var jsExt, cssExt;
 if (global.environment === 'dev') {
   jsExt = '.js';
@@ -18,28 +23,29 @@ if (global.environment === 'dev') {
   cssExt = '.min.css';
 }
 // Modules and libraries
-app.use('/js/tether', express.static(path.join(modules, 'tether', 'dist', 'js', 'tether' + jsExt)));
-app.use('/js/bootstrap', express.static(path.join(modules, 'bootstrap', 'dist', 'js', 'bootstrap' + jsExt)));
-app.use('/js/jquery', express.static(path.join(modules, 'jquery', 'dist', 'jquery' + jsExt)));
-app.use('/js/angular', express.static(path.join(modules, 'angular', 'angular' + jsExt)));
-app.use('/js/angular-ui-router', express.static(path.join(modules, 'angular-ui-router', 'release', 'angular-ui-router' + jsExt)));
-app.use('/js/angular-animate', express.static(path.join(modules, 'angular-animate', 'angular-animate' + jsExt)));
-app.use('/js/ui-bootstrap', express.static(path.join(modules, 'angular-ui-bootstrap', 'dist', 'ui-bootstrap-tpls' + jsExt)));
-app.use('/js/angular-recaptcha', express.static(path.join(modules, 'angular-recaptcha', 'release', 'angular-recaptcha' + jsExt)));
-app.use('/js/knockout', express.static(path.join(modules, 'knockout', 'build', 'output', 'knockout-latest' + jsExt)));
-app.use('/js/moment', express.static(path.join(modules, 'moment', 'min', 'moment' + jsExt)));
-app.use('/js/moment-timezone', express.static(path.join(modules, 'moment-timezone', 'builds', 'moment-timezone-with-data' + jsExt)));
-app.use('/js/classie', express.static(path.join(lib, 'classie' + jsExt)));
-app.use('/js/cssParser', express.static(path.join(lib, 'cssParser' + jsExt)));
-app.use('/js/modernizr', express.static(path.join(lib, 'modernizr' + jsExt)));
-app.use('/css/tether', express.static(path.join(modules, 'tether', 'dist', 'css', 'tether' + cssExt))); 
-app.use('/css/bootstrap', express.static(path.join(modules, 'bootstrap', 'dist', 'css', 'bootstrap' + cssExt)));
-app.use('/css', express.static(path.join(modules, 'bootstrap', 'dist', 'css')));
+app.use('/js/tether', express.static(path.join(modules, 'tether', 'dist', 'js', 'tether' + jsExt), options));
+app.use('/js/bootstrap', express.static(path.join(modules, 'bootstrap', 'dist', 'js', 'bootstrap' + jsExt), options));
+app.use('/js/jquery', express.static(path.join(modules, 'jquery', 'dist', 'jquery' + jsExt), options));
+app.use('/js/angular', express.static(path.join(modules, 'angular', 'angular' + jsExt), options));
+app.use('/js/angular-ui-router', express.static(path.join(modules, 'angular-ui-router', 'release', 'angular-ui-router' + jsExt), options));
+app.use('/js/angular-animate', express.static(path.join(modules, 'angular-animate', 'angular-animate' + jsExt), options));
+app.use('/js/ui-bootstrap', express.static(path.join(modules, 'angular-ui-bootstrap', 'dist', 'ui-bootstrap-tpls' + jsExt), options));
+app.use('/js/angular-recaptcha', express.static(path.join(modules, 'angular-recaptcha', 'release', 'angular-recaptcha' + jsExt), options));
+app.use('/js/knockout', express.static(path.join(modules, 'knockout', 'build', 'output', 'knockout-latest' + jsExt), options));
+app.use('/js/moment', express.static(path.join(modules, 'moment', 'min', 'moment' + jsExt), options));
+app.use('/js/moment-timezone', express.static(path.join(modules, 'moment-timezone', 'builds', 'moment-timezone-with-data' + jsExt), options));
+app.use('/js/classie', express.static(path.join(lib, 'classie' + jsExt), options));
+app.use('/js/cssParser', express.static(path.join(lib, 'cssParser' + jsExt), options));
+app.use('/js/modernizr', express.static(path.join(lib, 'modernizr' + jsExt), options));
+app.use('/css/tether', express.static(path.join(modules, 'tether', 'dist', 'css', 'tether' + cssExt), options)); 
+app.use('/css/bootstrap', express.static(path.join(modules, 'bootstrap', 'dist', 'css', 'bootstrap' + cssExt), options));
+app.use('/css', express.static(path.join(modules, 'bootstrap', 'dist', 'css'), options));
 // My stuff
 app.use('/js/app', express.static(path.join(__dirname, 'public', 'js', 'app.min.js')));
-app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
-app.use('/fonts', express.static(path.join(__dirname, 'public', 'fonts')));
-app.use('/img', express.static(path.join(__dirname, 'public', 'img')));
+app.use('/css', express.static(path.join(__dirname, 'public', 'css'), options));
+app.use('/css', express.static(path.join(__dirname, 'public', 'css'), options));
+app.use('/fonts', express.static(path.join(__dirname, 'public', 'fonts'), options));
+app.use('/img', express.static(path.join(__dirname, 'public', 'img'), options));
 app.use(express.static(path.join(__dirname, 'app', 'views')));
 
 app.use(fileUpload());

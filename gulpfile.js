@@ -39,21 +39,31 @@ gulp.task('build-scripts', function(cb) {
 
 // Builds all less to the public directory
 gulp.task('build-less', function() {
-  return gulp.src('app/less/**/*.less')
+  // Build the main style into one file
+  buildStyles('app/less/style.less', 'style.css');
+  return buildStyles([
+    'app/less/blackjack.less',
+    'app/less/colorzones.less',
+    'app/less/modal.less',
+    'app/less/parser.less',
+  ], 'portfolioStyles.css')
+});
+
+function buildStyles(input, output) {
+  return gulp.src(input)
     .pipe(sourcemaps.init())
     .pipe(less().on('error', function(err) {
       gutil.log('Error in build-less task...');
       gutil.err(err);
     }))
-    // .pipe(cssmin().on('error', function(err) {
-    //   gutil.log('Error in build-less task...');
-    //   gutil.err(err);
-    // }))
-    .pipe(concat('style.css'))
+    .pipe(cssmin().on('error', function(err) {
+      gutil.log('Error in build-less task...');
+      gutil.err(err);
+    }))
+    .pipe(concat(output))
     .pipe(sourcemaps.write())
-    // .pipe(gutil.env.env === 'production' ? rename({suffix: '.min'}) : gutil.noop())
     .pipe(gulp.dest('public/css'));
-})
+}
 
 gulp.task('build-scripts-ugly', function() {
   return gulp.src('lib/cssParser.js')
