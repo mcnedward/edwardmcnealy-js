@@ -28,7 +28,7 @@ angular.module('mcnedward')
       ga('send', 'pageview');
     });
 
-    $('#loader').fadeOut(500);
+    $('#loader').fadeOut(200);
 
     function adjustScroll(id) {
       if (!id || id === '') return;

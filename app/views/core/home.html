@@ -13,12 +13,172 @@
   </div>
 
 	<div class="portfolio pt-5 pb-3">
-    <div class="container" data-ng-include="'core/portfolio.html'"></div>
+    <div class="container text-center">
+      <h2 class="mb-4">Portfolio</h2>
+      <div class="row">
+        <a id="ii"></a>
+        <div class="col-sm-12 col-lg-6 mb-4">
+          <div class="portfolio-item">
+            <a ui-sref="ii">
+            <span class="portfolio-pic-contain">
+              <img class="portfolio-pic img-fluid img-shadow mb-3" src="img/ii/ii.png" alt="Inheritance Inquiry"/>
+            </span></a>
+            <h4>Inheritance Inquiry</h4>
+          </div>
+        </div>
+        <a id="eatingcinci"></a>
+        <div class="col-sm-12 col-lg-6 mb-4">
+          <div class="portfolio-item">
+            <a href="http://www.eatingcinci.com">
+            <span class="portfolio-pic-contain">
+              <img class="portfolio-pic img-fluid img-shadow mb-3" src="img/portfolio-pics/eatingcinci.png" alt="Eating Cinci"/>
+            </span></a>
+            <h4>Eating Cinci</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <a id="colorZones"></a>
+        <div class="col-sm-12 col-lg-6 mb-4">
+          <div class="portfolio-item">
+            <a ui-sref="colorZones">
+              <span class="portfolio-pic-contain">
+                <img class="portfolio-pic img-fluid img-shadow mb-3" src="img/portfolio-pics/colorZones.png" alt="Color Zones"/>
+              </span>
+            </a>
+            <h4>Color Zones</h4>
+          </div>
+        </div>
+        <a id="parser"></a>
+        <div class="col-sm-12 col-lg-6 mb-4">
+          <div class="portfolio-item">
+            <a ui-sref="parser">
+              <span class="portfolio-pic-contain">
+                <img class="portfolio-pic img-fluid img-shadow mb-3" src="img/portfolio-pics/parser.png" alt="Parser"/>
+              </span>
+            </a>
+            <h4>Parser</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <a id="bramble"></a>
+        <div class="col-sm-12 col-lg-6 mb-4">
+          <div class="portfolio-item">
+            <a ui-sref="bramble">
+              <span class="portfolio-pic-contain">
+                <img class="portfolio-pic img-fluid img-shadow mb-3" src="img/bramble/artistView.png" alt="Bramble"/>
+              </span>
+            </a>
+            <h4>Bramble</h4>
+          </div>
+        </div>
+        <a id="keepfit"></a>
+        <div class="col-sm-12 col-lg-6 mb-4">
+          <div class="portfolio-item">
+            <a ui-sref="keepfit">
+              <span class="portfolio-pic-contain">
+                <img class="portfolio-pic img-fluid img-shadow mb-3" src="img/keepfit/keepfit.png" alt="KeepFit"/>
+              </span>
+            </a>
+            <h4>KeepFit</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <a id="numberPrinter"></a>
+        <div class="col-sm-12 col-lg-6 m-x-auto pull-xs-none mb-3">
+          <div class="portfolio-item">
+            <a ui-sref="numberPrinter">
+              <span class="portfolio-pic-contain">
+                <img class="portfolio-pic img-fluid img-shadow mb-3" src="img/portfolio-pics/numberPrinter.png" alt="Number Printer"/>
+              </span>
+            </a>
+            <h4>Number Printer</h4>
+          </div>
+        </div>
+        <a id="blackjack"></a>
+        <div class="col-sm-12 col-lg-6 mb-4">
+          <div class="portfolio-item">
+            <a ui-sref="blackjack">
+            <span class="portfolio-pic-contain">
+              <img class="portfolio-pic img-fluid img-shadow mb-3" src="img/portfolio-pics/blackjack.png" alt="Blackjack"/>
+            </span></a>
+            <h4>Blackjack</h4>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 	<div class="specs pt-5 pb-3">
-    <div class="container" data-ng-include="'core/specs.html'"></div>
+    <div class="container text-center">
+      <h2 class="mb-3">What I Work With</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <img src="img/core/webstack.png" alt="Web Stack"/>
+          <h4>Full Stack Web Dev</h4>
+          <p>Web apps using Java &amp; C#, alongside JavaScript technologies including AngularJS &amp; KnockoutJS.
+        </div>
+        <div class="col-md-6">
+          <img src="img/core/mobile.png" alt="Mobile"/>
+          <h4>Mobile Applications</h4>
+          <p>Android apps, using Native Android, PhoneGap, Xamarin, &amp; LibGdx.
+        </div>
+      </div>
+    </div>
   </div>
 	<div class="contact pt-5 pb-3">
-    <div class="container" data-ng-include="'core/contact.html'"></div>
+    <div class="container">
+      <h2 class="mb-3 text-center">Contact or Hire Me!</h2>
+      <form data-ngForm name="form" novalidate class="mb-1">
+        
+        <div class="form-group">
+          <label for="email" class="font-lg">Email</label>
+          <input class="form-control" name="email" type="email" aria-describedby="email" placeholder="Your email" required
+            data-ng-model="contactInfo.email" maxlength="{{emailMaxLength}}" data-ng-maxlength="emailMaxLength">
+          <div data-ng-show="form.$submitted || form.email.$touched" class="text-danger">
+                <div data-ng-show="form.email.$error.required">You need to enter an email!</div>
+                <div data-ng-show="form.email.$error.email">You need a valid email!</div>
+            </div>
+        </div>
+        
+        <div class="form-group form-group-material">
+          <label for="subject" class="font-lg">Subject</label>
+          <input class="form-control" name="subject" type="text" aria-describedby="subject" placeholder="Your subject" required
+            data-ng-model="contactInfo.subject" maxlength="{{subjectMaxLength}}" data-ng-maxlength="subjectMaxLength">
+          <span class="small">{{subjectLength()}} / {{subjectMaxLength}}</span>
+          <div data-ng-show="form.$submitted || form.subject.$touched" class="text-danger">
+                <div data-ng-show="form.subject.$error.required">You need a subject!</div>
+            </div>
+        </div>
+        
+        <div class="form-group form-group-material">
+          <label for="message" class="font-lg">Message</label>
+          <textarea rows="6" cols="50" name="message" class="form-control" aria-describedby="message" placeholder="Your message" required
+            data-ng-model="contactInfo.message" maxlength="{{messageMaxLength}}" data-ng-maxlength="messageMaxLength" />
+          <span class="small">{{messageLength()}} / {{messageMaxLength}}</span>
+          <div data-ng-show="form.$submitted || form.message.$touched" class="text-danger">
+                <div data-ng-show="form.message.$error.required">You need a message!</div>
+            </div>
+        </div>
+        
+        <div class="row mb-2">
+          <div class="col-md-6">
+            <div class="content-recaptcha mb-2 float-md-left" vc-recaptcha data-ng-model="contactInfo.recaptchaResponse" key="'6LcIzQgUAAAAAAtgSLJ84VTOI7wXEuSZquyasLoQ'"></div>
+            <div data-ng-show="form.$submitted || form.recaptcha" class="text-danger text-xs-center text-md-left">You need to complete the reCaptcha!</div>
+          </div>
+          <div class="col-md-6">
+            <span class="ebtn ebtn-full font-lg" data-ng-class="isFormSubmitted ? 'ebtn-disabled' : 'ebtn-green'" data-ng-click="submitContact(form, contactInfo)">
+              <i class="fa fa-envelope" aria-hidden="true"></i> Contact
+            </span>
+          </div>
+        </div>
+      </form>
+      <div class="text-center text-success"><h5>{{contactSuccessMessage}}</h5></div>
+      <div class="text-center text-danger"><h5>{{contactErrorMessage}}</h5></div>
+    </div>
   </div>
 </div>
