@@ -3,7 +3,8 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       fileUpload = require('express-fileupload'),
       path = require('path'),
-      routes = require('./routes/routes');
+      routes = require('./routes/routes'),
+      port = 8484;
 
 global.environment = 'production';
 
@@ -60,6 +61,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'app', 'views', 'index.html'));
 })
 
-app.listen(3000, function() {
-  console.log('edwardmcnealy.com listening on port 3000!');
+app.listen(port, function() {
+  console.log('edwardmcnealy.com listening on port ' + port + '!');
 })
