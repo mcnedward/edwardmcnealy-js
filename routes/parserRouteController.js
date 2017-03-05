@@ -19,7 +19,7 @@ module.exports = {
       var file = files[i];
       form.append('files', file.data, {
         filename: file.name,
-        contentType: 'text/plain'
+        contentType: file.mimetype
       });
     }
   },
