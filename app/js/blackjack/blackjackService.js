@@ -42,7 +42,7 @@ angular.module('mcnedward')
 			value: value,
 			id: id,
 			isFaceDown: false,
-			src: 'img/blackjack/card/' + srcName + '.png',
+			src: 'img/blackjack/card/' + srcName + '.jpg',
 		};
 	}
 	

@@ -5,7 +5,7 @@
 		<div id="dTable" class="b-table">
 			<div class="b-table-info">Dealer Wins - <span class="b-table-info-win">{{dealer.wins}}</span> &nbsp;|&nbsp; Dealer Losses - <span class="b-table-info-loss">{{dealer.loses}}</span></div>
 			<div class="b-table-info">Dealer Hand - <span class="b-table-info-num">{{dealer.handValue}}</span></div>
-			<img src="img/blackjack/card/b2fv.png" class="empty-card card-img"/>
+			<img src="img/blackjack/card/b2fv.jpg" class="empty-card card-img"/>
 			<div playing-card data-ng-repeat="card in dealer.cards" data-card="card"></div>
 		</div>
 	
@@ -18,7 +18,7 @@
 		</div>
 	
 		<div id="pTable" class="b-table">
-			<img src="img/blackjack/card/b2fv.png" class="empty-card card-img"/>
+			<img src="img/blackjack/card/b2fv.jpg" class="empty-card card-img"/>
 			<div playing-card data-ng-repeat="card in player.cards" data-card="card"></div>
 			<div class="b-table-info">Player Hand - <span class="b-table-info-num">{{player.handValue}}</span></div>
 			<div class="b-table-info">Player Wins - <span class="b-table-info-win">{{player.wins}}</span> &nbsp;|&nbsp; Player Losses - <span class="b-table-info-loss">{{player.loses}}</span></div>

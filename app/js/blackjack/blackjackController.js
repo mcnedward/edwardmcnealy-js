@@ -58,12 +58,12 @@ angular.module('mcnedward')
 	for (var x = 0; x < 3; x++) {
 		var card = $('<img>');
 		if (x == 2) {
-			card.attr('src', 'img/blackjack/card/b2fv.png');
+			card.attr('src', 'img/blackjack/card/b2fv.jpg');
 			card.attr('id', 'startCard');
 			card.addClass('card-img');
 		}
 		else {
-			card.attr('src', 'img/blackjack/card/b2pl.png');
+			card.attr('src', 'img/blackjack/card/b2pl.jpg');
 			card.addClass('card-img');
 		}
 		$('#startCards').append(card);

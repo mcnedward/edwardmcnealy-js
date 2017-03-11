@@ -21,7 +21,7 @@
 			data-ng-class="isFormSubmitted ? 'ebtn-disabled' : 'ebtn-green'">Upload {{fileName}}</span>
 	</form>
 	
-  <div class="row text-left">
+  <div class="row text-left" data-ng-show="directory.classes">
     <div class="col-sm-12 col-md-3 mb-2">
       <uib-tabset active="activeJustified" justified="true">
         <uib-tab index="0" heading="Analysis">

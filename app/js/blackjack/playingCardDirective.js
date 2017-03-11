@@ -23,7 +23,7 @@ angular.module('mcnedward')
 		},
 		link: function(scope, element, attrs) {
 			if (scope.card.isFaceDown)
-				element.attr('src', 'img/blackjack/card/b2fv.png');
+				element.attr('src', 'img/blackjack/card/b2fv.jpg');
 			else
 				element.attr('src', scope.card.src);
         },
