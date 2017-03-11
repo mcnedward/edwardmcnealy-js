@@ -30,10 +30,10 @@ gulp.task('build-scripts', function(cb) {
     .pipe(babel({
       presets: ['es2015']
     }))
-    .pipe(sourcemaps.init())
+    // .pipe(sourcemaps.init())
     .pipe(concat('app.min.js'))
     .pipe(uglify().on('error', uglifyError))
-    .pipe(sourcemaps.write())
+    // .pipe(sourcemaps.write('maps'))
     .pipe(gulp.dest('public/js'));
 })
 
@@ -41,6 +41,7 @@ gulp.task('build-scripts', function(cb) {
 gulp.task('build-less', function() {
   // Build the main style into one file
   buildStyles('app/less/style.less', 'style.css');
+  // Build the rest
   return buildStyles([
     'app/less/blackjack.less',
     'app/less/colorzones.less',
@@ -66,11 +67,11 @@ function buildStyles(input, output) {
 }
 
 gulp.task('build-scripts-ugly', function() {
-  return gulp.src('lib/cssParser.js')
-    .pipe(sourcemaps.init())
+  return gulp.src('public/js/lib/cssParser.js')
+    // .pipe(sourcemaps.init())
     .pipe(uglify())
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('lib/out'));
+    // .pipe(sourcemaps.write())
+    .pipe(gulp.dest('public/js/lib/out'));
 })
 
 // Builds both scripts and less to the public directory

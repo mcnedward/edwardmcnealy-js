@@ -47,7 +47,7 @@ app.use('/css', express.static(path.join(__dirname, 'public', 'css'), options));
 app.use('/css', express.static(path.join(__dirname, 'public', 'css'), options));
 app.use('/fonts', express.static(path.join(__dirname, 'public', 'fonts'), options));
 app.use('/img', express.static(path.join(__dirname, 'public', 'img'), options));
-app.use(express.static(path.join(__dirname, 'app', 'views')));
+app.use(express.static(path.join(__dirname, 'public', 'views')));
 
 app.use(fileUpload());
 app.use(bodyParser.json());
@@ -58,7 +58,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use('/api', routes);
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'app', 'views', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'views', 'index.html'));
 })
 
 app.listen(port, function() {
