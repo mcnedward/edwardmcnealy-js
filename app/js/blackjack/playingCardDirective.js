@@ -11,7 +11,7 @@ angular.module('mcnedward')
 		},
 		restrict: 'AE',
 		replace: 'true',
-		controller: function($scope) {
+		controller: ['$scope', function($scope) {
 			$scope.$on('playerBusted', function() {
 				if ($scope.card.isFaceDown) {
 					$('#' + $scope.card.id).attr('src', $scope.card.src);
@@ -20,7 +20,7 @@ angular.module('mcnedward')
 			$scope.$on('showCards', function() {
 				$('#' + $scope.card.id).attr('src', $scope.card.src);
 			});
-		},
+		}],
 		link: function(scope, element, attrs) {
 			if (scope.card.isFaceDown)
 				element.attr('src', 'img/blackjack/card/b2fv.jpg');

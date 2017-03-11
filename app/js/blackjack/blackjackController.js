@@ -2,8 +2,8 @@
  * Created by Edward on 11/8/2014.
  */
 angular.module('mcnedward')
-.controller('BlackjackCtrl', ['$rootScope', '$scope', '$window', 'blackjackService', 'playerService',
-	function BlackjackCtrl($rootScope, $scope, $window, blackjackService, playerService) {
+.controller('BlackjackCtrl', ['$rootScope', '$scope', 'blackjackService', 'playerService',
+	function BlackjackCtrl($rootScope, $scope, blackjackService, playerService) {
   'use strict';
 	
 	$scope.player = playerService.getPlayer();
