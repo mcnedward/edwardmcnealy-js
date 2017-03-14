@@ -47,17 +47,21 @@ gulp.task('build-scripts', ['clean-script-rev'], function() {
 })
 
 // Builds all less to the public directory
-gulp.task('build-styles', ['clean-styles-rev', 'build-styles-main', 'build-styles-portfolio']);
-gulp.task('build-styles-main', function() {
+// gulp.task('build-styles', ['clean-styles-rev', 'build-styles-main', 'build-styles-portfolio']);
+gulp.task('build-styles', function() {
+  var dir = path.join('public', 'css');
+  clean('style.css', dir).then(() => {
+    clean('portfolioStyle.css', dir).then(() => {
+      buildStyles('app/less/style.less', 'style.css');
+      return buildStyles([
+        'app/less/blackjack.less',
+        'app/less/colorzones.less',
+        'app/less/modal.less',
+        'app/less/parser.less',
+      ], 'portfolioStyle.css');
+    })
+  })
   return buildStyles('app/less/style.less', 'style.css');
-})
-gulp.task('build-styles-portfolio', function() {
-  return buildStyles([
-    'app/less/blackjack.less',
-    'app/less/colorzones.less',
-    'app/less/modal.less',
-    'app/less/parser.less',
-  ], 'portfolioStyle.css');
 })
 
 function buildStyles(input, output) {
@@ -86,14 +90,10 @@ function buildStyles(input, output) {
 gulp.task('clean-script-rev', function() {
   return clean('app.min.js', path.join('public', 'js'));
 })
-gulp.task('clean-styles-rev', function() {
-  var dir = path.join('public', 'css');
-  clean('style.css', dir)
-  return clean('portfolioStyle.css', dir);
-})
 function clean(fileKey, dir) {
   try {
     var manifest = require('./rev-manifest.json');
+    console.log(manifest)
     var oldFilePath = manifest[fileKey];
     if (!oldFilePath) {
       return gutil.noop();

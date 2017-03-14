@@ -18,6 +18,13 @@ angular.module('mcnedward')
     clear();
 		$scope.contactErrorMessage = message;
 	}
+
+  $scope.portfolioMouseOver = () => {
+    $scope.shouldFade = true;
+  }
+  $scope.portfolioMouseLeave = () => {
+    $scope.shouldFade = false;
+  }
 	
 	$scope.submitContact = function(form, contactInfo) {
 		if ($scope.isFormSubmitted) return;
