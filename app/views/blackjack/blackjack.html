@@ -1,0 +1,51 @@
+<div class="text-center mb-4">
+	<h3 id="blackjack-message">{{message}}</h3>
+	<div id="blackjackApp">
+		
+		<div id="dTable" class="b-table">
+			<div class="b-table-info">Dealer Wins - <span class="b-table-info-win">{{dealer.wins}}</span> &nbsp;|&nbsp; Dealer Losses - <span class="b-table-info-loss">{{dealer.loses}}</span></div>
+			<div class="b-table-info">Dealer Hand - <span class="b-table-info-num">{{dealer.handValue}}</span></div>
+			<img src="img/blackjack/card/b2fv.jpg" class="empty-card card-img"/>
+			<div playing-card data-ng-repeat="card in dealer.cards" data-card="card"></div>
+		</div>
+	
+		<div class="b-table o-table">
+			<span id="startCards" data-ng-click="dealCards()"></span>
+			<div id="options">
+				<span id="btnHitMe" class="ebtn ebtn-blue" data-ng-click="hitMe()">Hit Me!</span>
+				<span id="btnStay" class="ebtn ebtn-blue" data-ng-click="stay()">Stay</span>
+			</div>
+		</div>
+	
+		<div id="pTable" class="b-table">
+			<img src="img/blackjack/card/b2fv.jpg" class="empty-card card-img"/>
+			<div playing-card data-ng-repeat="card in player.cards" data-card="card"></div>
+			<div class="b-table-info">Player Hand - <span class="b-table-info-num">{{player.handValue}}</span></div>
+			<div class="b-table-info">Player Wins - <span class="b-table-info-win">{{player.wins}}</span> &nbsp;|&nbsp; Player Losses - <span class="b-table-info-loss">{{player.loses}}</span></div>
+			<div class="b-table-bet">
+				<div class="b-table-info">Money - <span class="b-table-info-money">${{player.money}}</span></div>
+				<div class="b-table-info">Bet - <span class="b-table-info-money">${{player.bet}}</span></div>
+				<div class="b-table-bet-chip">
+					<div class="chip chip-5" data-ng-click="addChip(5)">
+						<span data-ng-show="player.chips.chip5s > 0">x{{player.chips.chip5s}}</span>
+					</div>
+					<div class="chip chip-10" data-ng-click="addChip(10)">
+						<span data-ng-show="player.chips.chip10s > 0">x{{player.chips.chip10s}}</span>
+					</div>
+					<div class="chip chip-25" data-ng-click="addChip(25)">
+						<span data-ng-show="player.chips.chip25s > 0">x{{player.chips.chip25s}}</span>
+					</div>
+					<div class="chip chip-100" data-ng-click="addChip(100)">
+						<span data-ng-show="player.chips.chip100s > 0">x{{player.chips.chip100s}}</span>
+					</div>
+					<div class="chip chip-500" data-ng-click="addChip(500)">
+						<span data-ng-show="player.chips.chip500s > 0">x{{player.chips.chip500s}}</span>
+					</div>	
+					<div class="b-table-bet-btn">
+						<div class="ebtn ebtn-purple" data-ng-click="clearBet()" data-ng-class="{'ebtn-disabled':stopBets}">Clear Bet</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

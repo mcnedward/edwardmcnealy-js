@@ -1,18 +1,1 @@
-<div>
-	<div class="directory-container" data-ng-show="isRealDirectory">
-		<span class="ebtn ebtn-gray ebtn-full" data-ng-click="showContents=!showContents">
-			{{name}} <i class="fa" data-ng-class="showContents ? 'fa-chevron-down' : 'fa-chevron-right'" aria-hidden="true"></i>
-		</span>
-	</div>
-	<div ng-if="showContents || !isRealDirectory" class="animation">
-		<div data-ng-repeat="d in directories track by $index" data-ng-class="{'pl-3': isRealDirectory}">
-			<directory name="d.name" id="d.id"
-			  directories="d.directories" classes="d.classes"></directory>
-		</div>
-		<div data-ng-repeat="c in classes track by $index" data-ng-class="{'pl-3': isRealDirectory}">
-			<span class="ebtn ebtn-blue ebtn-full" data-ng-click="selectClass(id, c.id)">
-				{{c.fileName}}
-			</span>
-		</div>
-	</div>
-</div>
+<div><div class="directory-container" data-ng-show="isRealDirectory"><span class="ebtn ebtn-gray ebtn-full" data-ng-click="showContents=!showContents">{{name}} <i class="fa" data-ng-class="showContents ? 'fa-chevron-down' : 'fa-chevron-right'" aria-hidden="true"></i></span></div><div ng-if="showContents || !isRealDirectory" class="animation"><div data-ng-repeat="d in directories track by $index" data-ng-class="{'pl-3': isRealDirectory}"><directory name="d.name" id="d.id" directories="d.directories" classes="d.classes"></directory></div><div data-ng-repeat="c in classes track by $index" data-ng-class="{'pl-3': isRealDirectory}"><span class="ebtn ebtn-blue ebtn-full" data-ng-click="selectClass(id, c.id)">{{c.fileName}}</span></div></div></div>

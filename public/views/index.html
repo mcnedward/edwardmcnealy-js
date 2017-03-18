@@ -1,63 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" data-ng-app="mcnedward" data-ng-controller="AppCtrl">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
-  <base href="/"/>
-  <title data-ng-bind="appTitle">Edward McNealy</title>
-  <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
-</head>
-
-<body ui-router-styles ondragstart="return false;" ondrop="console.log('drop');return false;">
-    <div id="loader"></div>
-    <a id="scrollhere"></a>
-    <nav class="navbar fixed-top m-header" data-ng-hide="inRoot">
-      <div class="container">
-        <a data-ui-sref="app" class="text-center text-md-left">
-          <i class="fa fa-arrow-left" aria-hidden="true"></i> BACK
-        </a>
-      </div>
-    </nav>
-
-    <div id="wrapper">
-      <div data-ng-class="{container: useContainer, 'container-fluid': useContainerFluid, 'pt-5': !inRoot}">
-        <ui-view></ui-view>
-      </div>
-    </div>
-
-    <footer>
-      <div class="text-center">
-        <span class="logo pr-2"><a href="https://github.com/mcnedward"><i class="fa fa-github" aria-hidden="true"></i></a></span>
-        <span class="logo pr-2"><a href="https://www.linkedin.com/in/mcnedward"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></span>
-        <label class="copyright">&copy; Edward McNealy 2017</label>
-      </div>
-    </footer>
-</body>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/style" />
-<link rel="stylesheet" href="/css/portfolioStyle" />
-<link rel="stylesheet" href="/css/font-awesome" />
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
-<script src="/js/angular-ui-router"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-animate.min.js"></script>
-<script src="/js/ui-bootstrap"></script>
-<script src="/js/angular-recaptcha"></script>
-<script src="/js/app"></script>
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+<!DOCTYPE html><html lang="en" data-ng-app="mcnedward" data-ng-controller="AppCtrl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no"><base href="/"><title data-ng-bind="appTitle">Edward McNealy</title><link rel="shortcut icon" type="image/png" href="img/favicon.png"></head><body ui-router-styles ondragstart="return false;" ondrop="console.log('drop');return false;"><div id="loader"></div><a id="scrollhere"></a><nav class="navbar fixed-top m-header" data-ng-hide="inRoot"><div class="container"><a data-ui-sref="app" class="text-center text-md-left"><i class="fa fa-arrow-left" aria-hidden="true"></i> BACK</a></div></nav><div id="wrapper"><div data-ng-class="{container: useContainer, 'container-fluid': useContainerFluid, 'pt-5': !inRoot}"><ui-view></ui-view></div></div><footer><div class="text-center"><span class="logo pr-2"><a href="https://github.com/mcnedward"><i class="fa fa-github" aria-hidden="true"></i></a></span> <span class="logo pr-2"><a href="https://www.linkedin.com/in/mcnedward"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></span><label class="copyright">&copy; Edward McNealy 2017</label></div></footer></body><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"><link rel="stylesheet" href="/css/style"><link rel="stylesheet" href="/css/portfolioStyle"><link rel="stylesheet" href="/css/font-awesome"><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script><script src="/js/angular-ui-router"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-animate.min.js"></script><script src="/js/ui-bootstrap"></script><script src="/js/angular-recaptcha"></script><script src="/js/app"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-87908063-1', 'auto');
-  ga('send', 'pageview');
-</script>
-
-</html>
+  ga('send', 'pageview');</script></html>

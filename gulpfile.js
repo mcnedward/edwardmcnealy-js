@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     cssmin = require('gulp-cssmin'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
+    htmlmin = require('gulp-htmlmin'),
     rev = require('gulp-rev'),
     del = require('del'),
     path = require('path'),
@@ -18,6 +19,7 @@ gulp.task('default', ['watch']);
 gulp.task('watch', function() {
   gulp.watch('app/js/**/*.js', ['jshint', 'build-scripts']);
   gulp.watch('app/less/**/*.less', ['build-styles']);
+  gulp.watch('app/views/**/*.html', ['build-html']);
 })
 
 // Lints javascript
@@ -97,6 +99,12 @@ function buildStyles(input, output) {
     .pipe(gulp.dest(''));
 }
 
+gulp.task('build-html', () => {
+  return gulp.src('app/views/**/*.html')
+    .pipe(htmlmin({collapseWhitespace:true}))
+    .pipe(gulp.dest('public/views'))
+})
+
 // Clean up tasks
 gulp.task('clean-script-rev', function() {
   return clean('app.min.js', path.join('public', 'js'));
@@ -125,8 +133,8 @@ gulp.task('build-scripts-ugly', function() {
     .pipe(gulp.dest('public/js/lib/out'));
 })
 
-// Builds both scripts and less to the public directory
-gulp.task('build', ['build-scripts', 'build-styles']);
+// Builds both scripts, less, and html to the public directory
+gulp.task('build', ['build-scripts', 'build-styles', 'build-html']);
 
 function uglifyError(err) {
   gutil.log(gutil.colors.red('[Error]'), err.toString());
