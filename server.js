@@ -26,25 +26,17 @@ if (global.environment === 'dev') {
   cssExt = '.min.css';
 }
 // Modules and libraries
-app.use('/js/tether', express.static(path.join(modules, 'tether', 'dist', 'js', 'tether' + jsExt), cacheOptions));
-app.use('/js/bootstrap', express.static(path.join(modules, 'bootstrap', 'dist', 'js', 'bootstrap' + jsExt), cacheOptions));
-app.use('/js/jquery', express.static(path.join(modules, 'jquery', 'dist', 'jquery' + jsExt), cacheOptions));
-app.use('/js/angular', express.static(path.join(modules, 'angular', 'angular' + jsExt), cacheOptions));
 app.use('/js/angular-ui-router', express.static(path.join(modules, 'angular-ui-router', 'release', 'angular-ui-router' + jsExt), cacheOptions));
-app.use('/js/angular-animate', express.static(path.join(modules, 'angular-animate', 'angular-animate' + jsExt), cacheOptions));
 app.use('/js/ui-bootstrap', express.static(path.join(modules, 'angular-ui-bootstrap', 'dist', 'ui-bootstrap-tpls' + jsExt), cacheOptions));
 app.use('/js/angular-recaptcha', express.static(path.join(modules, 'angular-recaptcha', 'release', 'angular-recaptcha' + jsExt), cacheOptions));
 app.use('/js/knockout', express.static(path.join(modules, 'knockout', 'build', 'output', 'knockout-latest' + jsExt), cacheOptions));
 app.use('/js/moment', express.static(path.join(modules, 'moment', 'min', 'moment' + jsExt), cacheOptions));
 app.use('/js/moment-timezone', express.static(path.join(modules, 'moment-timezone', 'builds', 'moment-timezone-with-data' + jsExt), cacheOptions));
-app.use('/js/classie', express.static(path.join(lib, 'classie' + jsExt), cacheOptions));
-app.use('/js/cssParser', express.static(path.join(lib, 'cssParser' + jsExt), cacheOptions));
-app.use('/js/modernizr', express.static(path.join(lib, 'modernizr' + jsExt), cacheOptions));
-app.use('/css/tether', express.static(path.join(modules, 'tether', 'dist', 'css', 'tether' + cssExt), cacheOptions)); 
-app.use('/css/bootstrap', express.static(path.join(modules, 'bootstrap', 'dist', 'css', 'bootstrap' + cssExt), cacheOptions));
+app.use('/js/lib', express.static(path.join(lib, 'lib.min.js'), cacheOptions));
 app.use('/css/font-awesome', express.static(path.join(__dirname, 'public', 'css', 'font-awesome.min.css'), cacheOptions));
 // My stuff
 app.use('/js/app', express.static(path.join(__dirname, 'public', 'js', manifest['app.min.js'])));
+app.use('/js/color-zones', express.static(path.join(__dirname, 'public', 'js', manifest['color-zones.min.js'])));
 app.use('/css/style', express.static(path.join(__dirname, 'public', 'css', manifest['style.css']), cacheOptions));
 app.use('/css/portfolioStyle', express.static(path.join(__dirname, 'public', 'css', manifest['portfolioStyle.css']), cacheOptions));
 app.use('/fonts', express.static(path.join(__dirname, 'public', 'fonts'), cacheOptions));

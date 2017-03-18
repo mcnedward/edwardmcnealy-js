@@ -29,12 +29,23 @@ gulp.task('jshint', function() {
 
 // Builds all scripts to the public directory
 gulp.task('build-scripts', ['clean-script-rev'], function() {
-  return gulp.src('app/js/**/*.js')
+  buildScripts([
+    'app/js/**/*.js',
+    '!app/js/colorZones/**/!(colorZonesController)*.js'
+  ], 'app.min.js');
+  return buildScripts([
+    'app/js/colorZones/**/*.js',
+    '!app/js/colorZones/colorZonesController.js'
+  ], 'color-zones.min.js');
+})
+
+function buildScripts(src, output) {
+  return gulp.src(src)
     .pipe(babel({
       presets: ['es2015']
     }))
     // .pipe(sourcemaps.init())
-    .pipe(concat('app.min.js'))
+    .pipe(concat(output))
     .pipe(uglify().on('error', uglifyError))
     // .pipe(sourcemaps.write('maps'))
     .pipe(rev())
@@ -44,7 +55,7 @@ gulp.task('build-scripts', ['clean-script-rev'], function() {
       merge: true
     }))
     .pipe(gulp.dest(''));
-})
+}
 
 // Builds all less to the public directory
 // gulp.task('build-styles', ['clean-styles-rev', 'build-styles-main', 'build-styles-portfolio']);
@@ -106,8 +117,9 @@ function clean(fileKey, dir) {
 }
 
 gulp.task('build-scripts-ugly', function() {
-  return gulp.src('public/js/lib/cssParser.js')
+  return gulp.src('public/js/lib/*.js')
     // .pipe(sourcemaps.init())
+    .pipe(concat('lib.min.js'))
     .pipe(uglify())
     // .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/js/lib/out'));
