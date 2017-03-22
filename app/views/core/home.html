@@ -62,6 +62,29 @@
       </div>
 
       <div class="row">
+        <a id="apod"></a>
+        <div class="col-sm-12 col-lg-6 mb-4">
+          <div class="portfolio-item" data-ng-mouseleave="portfolioMouseLeave()" data-ng-mouseover="portfolioMouseOver()">
+            <a ui-sref="apod">
+              <img class="portfolio-pic img-fluid img-shadow mb-3" data-ng-class="{'portfolio-fade': shouldFade}" src="img/bramble/artistView.jpg"
+                alt="APOD" />
+            </a>
+            <h4>Astronomy Picture of the Day</h4>
+          </div>
+        </div>
+        <a id="solar-system"></a>
+        <div class="col-sm-12 col-lg-6 mb-4">
+          <div class="portfolio-item" data-ng-mouseleave="portfolioMouseLeave()" data-ng-mouseover="portfolioMouseOver()">
+            <a ui-sref="solar-system">
+              <img class="portfolio-pic img-fluid img-shadow mb-3" data-ng-class="{'portfolio-fade': shouldFade}" src="img/keepfit/keepfit.jpg"
+                alt="Solor System" />
+            </a>
+            <h4>Solar System</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
         <a id="bramble"></a>
         <div class="col-sm-12 col-lg-6 mb-4">
           <div class="portfolio-item" data-ng-mouseleave="portfolioMouseLeave()" data-ng-mouseover="portfolioMouseOver()">

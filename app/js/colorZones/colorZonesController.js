@@ -3,11 +3,13 @@ angular.module('mcnedward')
 	function ColorZonesCtrl($rootScope, $scope) {
   'use strict';
 
+  var renderer;
+
   $(document).ready(function () {
-    $scope.renderer = new Renderer();
-    var timeZoneService = new TimeZoneService($scope.renderer.width());
+    renderer = new Renderer();
+    var timeZoneService = new TimeZoneService(renderer.width());
     var colorPicker = new ColorPicker();
-    var model = new ColorZonesViewModel($scope.renderer, timeZoneService, colorPicker);
+    var model = new ColorZonesViewModel(renderer, timeZoneService, colorPicker);
     // Figure out why I need this override here...
     ko.options.useOnlyNativeEvents = true;
     ko.applyBindings(model, $('#main')[0]);
@@ -25,7 +27,7 @@ angular.module('mcnedward')
   });
 
   $rootScope.$on('stopRendering', () => {
-    $scope.renderer.stopRendering(true);
+    renderer.stopRendering(true);
   });
   
 }]);

@@ -28,6 +28,12 @@ var app = angular.module('mcnedward', ['ui.router', 'ui.bootstrap', 'ngAnimate',
 			controller: 'ColorZonesCtrl',
 			title: 'Color Zones'
 		})
+    .state('apod', {
+      url: '/apod/',
+      templateUrl: 'apod/apod.html',
+      controller: 'ApodCtrl',
+      title: 'APOD'
+    })
 		.state('bramble', {
 			url: '/bramble/',
 			templateUrl: 'bramble/bramble.html',

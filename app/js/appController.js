@@ -20,7 +20,7 @@ angular.module('mcnedward')
       }
       
       $rootScope.inRoot = toState.name === 'app' || toState.name === '';
-      $rootScope.useContainerFluid = toState.name == 'colorZones' || toState.name == 'parser';
+      $rootScope.useContainerFluid = toState.name === 'colorZones' || toState.name === 'parser' || toState.name === 'apod';
       $rootScope.useContainer = !$rootScope.inRoot && !$rootScope.useContainerFluid;
 
       // Update Google Analytics

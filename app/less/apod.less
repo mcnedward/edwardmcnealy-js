@@ -1,0 +1,89 @@
+.btn {
+  cursor: pointer;
+}
+.alert {
+  width: 75%;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  z-index: 100;
+  word-wrap: break-word;
+}
+a {
+  text-decoration: none !important;
+  outline: none;
+}
+a img {
+  outline: none;
+}
+
+@width-lg: 256px;
+@width-md: 128px;
+@width-sm: 64px;
+@width-xs: 32px;
+
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+.img-apod {
+  width: @width-xs;
+  height: @width-xs;
+}
+a {
+  max-height: @width-xs;
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .alert {
+    width: 60%;
+  }
+  .img-apod {
+    width: @width-sm;
+    height: @width-sm;
+  }
+  a {
+    max-height: @width-sm;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+  .alert {
+    width: 50%;
+  }
+  .img-apod {
+    width: @width-md;
+    height: @width-md;
+  }
+  a {
+    max-height: @width-md;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+  .alert {
+    width: 40%;
+  }
+  .img-apod {
+    width: @width-lg;
+    height: @width-lg;
+  }
+  a {
+    max-height: @width-lg;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+  .alert {
+    width: 40%;
+  }
+  .img-apod {
+    width: @width-lg;
+    height: @width-lg;
+  }
+  a {
+    max-height: @width-lg;
+  }
+}

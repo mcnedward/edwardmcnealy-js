@@ -40,7 +40,11 @@ module.exports = function (env) {
     },
     {
       url: '/js/lib',
-      path: path.join(path.join(__dirname, 'public', 'js', 'lib'), 'lib.min.js')
+      path: path.join(__dirname, 'public', 'js', 'lib', 'lib.min.js')
+    },
+    {
+      url: '/js/bootstrap-datetimepicker',
+      path: path.join(__dirname, 'public', 'js', 'lib', 'bootstrap-datetimepicker.min.js')
     },
     {
       url: '/css/font-awesome',
