@@ -1,40 +1,51 @@
 var gulp = require('gulp'),
-    gutil = require('gulp-util'),
-    babel = require('gulp-babel'),
-    jshint = require('gulp-jshint'),
-    concat = require('gulp-concat'),
-    less = require('gulp-less'),
-    cssmin = require('gulp-cssmin'),
-    uglify = require('gulp-uglify'),
-    rename = require('gulp-rename'),
-    htmlmin = require('gulp-htmlmin'),
-    rev = require('gulp-rev'),
-    del = require('del'),
-    path = require('path'),
-    sourcemaps = require('gulp-sourcemaps');
+  gutil = require('gulp-util'),
+  babel = require('gulp-babel'),
+  jshint = require('gulp-jshint'),
+  concat = require('gulp-concat'),
+  less = require('gulp-less'),
+  cssmin = require('gulp-cssmin'),
+  uglify = require('gulp-uglify'),
+  rename = require('gulp-rename'),
+  htmlmin = require('gulp-htmlmin'),
+  rev = require('gulp-rev'),
+  del = require('del'),
+  path = require('path'),
+  sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('default', ['watch']);
 
 // Lints javascript and builds less on file changes
-gulp.task('watch', function() {
+gulp.task('watch', function () {
   gulp.watch('app/js/**/*.js', ['jshint', 'build-scripts']);
   gulp.watch('app/less/**/*.less', ['build-styles']);
   gulp.watch('app/views/**/*.html', ['build-html']);
 })
 
 // Lints javascript
-gulp.task('jshint', function() {
+gulp.task('jshint', function () {
   return gulp.src('app/js/**/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
 })
 
 // Builds all scripts to the public directory
-gulp.task('build-scripts', ['clean-script-rev'], function() {
+gulp.task('build-scripts', ['clean-script-rev'], function () {
+  // Build the scripts for everything that can be bundled into the main app.min.js
   buildScripts([
     'app/js/**/*.js',
-    '!app/js/colorZones/**/!(colorZonesController)*.js'
+    '!app/js/colorZones/**/!(colorZonesController)*.js',
+    '!app/js/apod/**/!(apodController)*.js',
+    '!app/js/utils/utils.js'
   ], 'app.min.js');
+  // Build scripts for utils
+  buildScripts('app/js/utils/utils.js', 'utils.min.js')
+  // Build scripts for APOD
+  buildScripts([
+    'app/js/apod/**/*.js',
+    '!app/js/apod/apodController.js'
+  ], 'apod.min.js')
+  // Build scripts for Color Zones
   return buildScripts([
     'app/js/colorZones/**/*.js',
     '!app/js/colorZones/colorZonesController.js'
@@ -48,43 +59,34 @@ function buildScripts(src, output) {
     }))
     // .pipe(sourcemaps.init())
     .pipe(concat(output))
-    .pipe(uglify().on('error', uglifyError))
+    .pipe(isProd() ? uglify().on('error', uglifyError) : gutil.noop())
     // .pipe(sourcemaps.write('maps'))
-    .pipe(rev())
+    .pipe(isProd() ? rev() : gutil.noop())
     .pipe(gulp.dest('public/js'))
-    .pipe(rev.manifest({
+    .pipe(isProd() ? rev.manifest({
       base: '',
       merge: true
-    }))
-    .pipe(gulp.dest(''));
+    }) : gutil.noop())
+    .pipe(isProd() ? gulp.dest('') : gutil.noop());
 }
 
 // Builds all less to the public directory
-// gulp.task('build-styles', ['clean-styles-rev', 'build-styles-main', 'build-styles-portfolio']);
-gulp.task('build-styles', function() {
-  var dir = path.join('public', 'css');
-  clean('style.css', dir).then(() => {
-    clean('portfolioStyle.css', dir).then(() => {
-      buildStyles('app/less/style.less', 'style.css');
-      return buildStyles([
-        'app/less/blackjack.less',
-        'app/less/colorzones.less',
-        'app/less/modal.less',
-        'app/less/parser.less',
-      ], 'portfolioStyle.css');
-    })
-  })
-  return buildStyles('app/less/style.less', 'style.css');
+gulp.task('build-styles', ['clean-styles-rev'], function () {
+  buildStyles('app/less/style.less', 'style.css');
+  return buildStyles([
+    'app/less/**/*.less',
+    '!app/less/style.less',
+  ], 'portfolioStyle.css');
 })
 
 function buildStyles(input, output) {
   return gulp.src(input)
     // .pipe(sourcemaps.init())
-    .pipe(less().on('error', function(err) {
+    .pipe(less().on('error', function (err) {
       gutil.log('Error in build-less task...');
       gutil.err(err);
     }))
-    .pipe(cssmin().on('error', function(err) {
+    .pipe(cssmin().on('error', function (err) {
       gutil.log('Error in build-less task...');
       gutil.err(err);
     }))
@@ -101,13 +103,20 @@ function buildStyles(input, output) {
 
 gulp.task('build-html', () => {
   return gulp.src('app/views/**/*.html')
-    .pipe(htmlmin({collapseWhitespace:true}))
+    .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(gulp.dest('public/views'))
 })
 
 // Clean up tasks
-gulp.task('clean-script-rev', function() {
-  return clean('app.min.js', path.join('public', 'js'));
+gulp.task('clean-script-rev', function () {
+  clean('app.min.js', path.join('public', 'js'));
+  clean('apod.min.js', path.join('public', 'js'));
+  clean('color-zones.min.js', path.join('public', 'js'));
+  clean('utils.min.js', path.join('public', 'js'));
+})
+gulp.task('clean-styles-rev', function () {
+  clean('style.css', path.join('public', 'css'));
+  clean('portfolioStyle.css', path.join('public', 'css'));
 })
 function clean(fileKey, dir) {
   try {
@@ -119,12 +128,12 @@ function clean(fileKey, dir) {
     }
     console.log('deleting ' + path.join(dir, oldFilePath))
     return del(path.join(dir, oldFilePath));
-  } catch(e) {
+  } catch (e) {
     return gutil.noop();
   }
 }
 
-gulp.task('build-scripts-ugly', function() {
+gulp.task('build-scripts-ugly', function () {
   return gulp.src('public/js/lib/*.js')
     // .pipe(sourcemaps.init())
     .pipe(concat('lib.min.js'))
@@ -140,3 +149,7 @@ function uglifyError(err) {
   gutil.log(gutil.colors.red('[Error]'), err.toString());
   this.emit('end');
 };
+
+function isProd() {
+  return gutil.env.env === 'prod';
+}
