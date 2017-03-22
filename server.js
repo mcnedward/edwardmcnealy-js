@@ -5,40 +5,23 @@ const express = require('express'),
       fileUpload = require('express-fileupload'),
       path = require('path'),
       routes = require('./routes/routes'),
-      manifest = require('./rev-manifest.json')
-      port = 8484;
-
-global.environment = 'production';
-
-const modules = path.join(__dirname, 'node_modules'),
+      sources = require('./sources')
+      modules = path.join(__dirname, 'node_modules'),
       lib = path.join(__dirname, 'public', 'js', 'lib'),
       oneDay = 31536000,
       cacheOptions = {
         maxAge: oneDay,
         etag: true
-      };
-// Modules and libraries
-app.use('/js/angular-ui-router', express.static(path.join(modules, 'angular-ui-router', 'release', 'angular-ui-router.min.js'), cacheOptions));
-app.use('/js/ui-bootstrap', express.static(path.join(modules, 'angular-ui-bootstrap', 'dist', 'ui-bootstrap-tpls.min.js'), cacheOptions));
-app.use('/js/angular-recaptcha', express.static(path.join(modules, 'angular-recaptcha', 'release', 'angular-recaptcha.min.js'), cacheOptions));
-app.use('/js/knockout', express.static(path.join(modules, 'knockout', 'build', 'output', 'knockout-latest.js'), cacheOptions));
-app.use('/js/moment', express.static(path.join(modules, 'moment', 'min', 'moment.min.js'), cacheOptions));
-app.use('/js/moment-timezone', express.static(path.join(modules, 'moment-timezone', 'builds', 'moment-timezone-with-data.min.js'), cacheOptions));
-app.use('/js/lib', express.static(path.join(lib, 'lib.min.js'), cacheOptions));
-app.use('/css/font-awesome', express.static(path.join(__dirname, 'public', 'css', 'font-awesome.min.css'), cacheOptions));
-// My stuff
-// Javascript
-app.use('/js/app', express.static(path.join(__dirname, 'public', 'js', manifest['app.min.js'])));
-app.use('/js/color-zones', express.static(path.join(__dirname, 'public', 'js', manifest['color-zones.min.js'])));
-app.use('/js/apod', express.static(path.join(__dirname, 'public', 'js', manifest['apod.min.js'])));
-app.use('/js/utils', express.static(path.join(__dirname, 'public', 'js', manifest['utils.min.js'])));
-// CSS
-app.use('/css/style', express.static(path.join(__dirname, 'public', 'css', manifest['style.css']), cacheOptions));
-app.use('/css/portfolioStyle', express.static(path.join(__dirname, 'public', 'css', manifest['portfolioStyle.css']), cacheOptions));
-// Fonts
-app.use('/fonts', express.static(path.join(__dirname, 'public', 'fonts'), cacheOptions));
-// Images
-app.use('/img', express.static(path.join(__dirname, 'public', 'img'), cacheOptions));
+      },
+      port = 8484;
+
+global.environment = 'dev';
+
+var bundle = sources(global.environment);
+for (var i = 0; i < bundle.length; i++) {
+  var item = bundle[i];
+  app.use(item.url, express.static(item.path, cacheOptions));
+}
 // Views
 app.use(express.static(path.join(__dirname, 'public', 'views')));
 
