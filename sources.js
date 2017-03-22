@@ -67,6 +67,10 @@ module.exports = function (env) {
       url: '/js/utils',
       path: getPath('utils.min.js', 'js', env)
     },
+    {
+      url: '/js/renderer',
+      path: getPath('renderer.min.js', 'js', env)
+    },
     // My styles, fonts, and images
     {
       url: '/css/style',

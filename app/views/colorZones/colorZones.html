@@ -1,12 +1,13 @@
 <script src="/js/moment"></script>
 <script src="/js/moment-timezone"></script>
 <script src="/js/knockout"></script>
+<script src="/js/renderer"></script>
 <script src="/js/color-zones"></script>
 
 <div id="main" class="container-fluid pb-4">
-  <div id="content" class="mx-auto d-block" data-bind="style: {width: width}">
-    <div id="canvasContainer" data-animation="false" data-placement="bottom" title="The regions on the map will be colored with a hex based on the current time in their time zone.">
-      <canvas id="theCanvas" data-bind="attr: {width: width, height: height}"></canvas>
+  <div id="content" class="mx-auto d-block">
+    <div id="canvasContainer" class="text-center" data-animation="false" data-placement="bottom" title="The regions on the map will be colored with a hex based on the current time in their time zone.">
+      <canvas id="theCanvas"></canvas>
     </div>
 
     <div>

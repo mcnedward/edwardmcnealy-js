@@ -1,20 +1,19 @@
-var ColorZonesViewModel = function (renderer, timeZoneService, colorPicker) {
+var ColorZonesViewModel = function (options) {
   var self = this;
 
-  const width = renderer.width(), height = renderer.height();
   const hoverZoneColor = '#660d60';
   const timeFormat = 'HH:mm:ss';
   var _hoverTimeZoneKey, _hoverRegionKey;
   var _selectedZoneInfo;
   var _mouseX, _mouseY;
+  var renderer = options.renderer;
+  var timeZoneService = options.timeZoneService;
   // UI options
-  self.colorPicker = ko.observable(colorPicker);
+  self.colorPicker = ko.observable(options.colorPicker);
   self.opacity = ko.observable(80);
   self.showTimes = ko.observable(false);
   self.colorAllZones = ko.observable(true);
   // Map options
-  self.width = ko.observable(width + 'px');
-  self.height = ko.observable(height + 'px');
   self.zoom = ko.observable(1);
   self.centerLat = ko.observable(20);
   self.centerLng = ko.observable(0);
@@ -27,7 +26,7 @@ var ColorZonesViewModel = function (renderer, timeZoneService, colorPicker) {
   });
 
   // Draw Loop
-  renderer.renderFunction(function() {
+  renderer.render(function() {
     if (self.timeZones().length === 0) return;
 
     var timeTexts = [];
@@ -40,9 +39,9 @@ var ColorZonesViewModel = function (renderer, timeZoneService, colorPicker) {
       var minutes = adjustTime(current.minutes());
       var seconds = adjustTime(current.seconds());
 
-      var red = getColorInterval(colorPicker.red, hours, minutes, seconds);
-      var green = getColorInterval(colorPicker.green, hours, minutes, seconds);
-      var blue = getColorInterval(colorPicker.blue, hours, minutes, seconds);
+      var red = getColorInterval(self.colorPicker().red, hours, minutes, seconds);
+      var green = getColorInterval(self.colorPicker().green, hours, minutes, seconds);
+      var blue = getColorInterval(self.colorPicker().blue, hours, minutes, seconds);
 
       var color = "#" + red + green + blue;
       if (self.colorAllZones()) {
@@ -89,7 +88,7 @@ var ColorZonesViewModel = function (renderer, timeZoneService, colorPicker) {
   // Load the map image
   function loadMap(mapCallback) {
     _mapCallback = mapCallback;
-    fetch('/api/color-zones/map?centerLat=' + self.centerLat() + '&centerLng=' + self.centerLng() + '&zoom=' + self.zoom() + '&width=' + width + '&height=' + height)
+    fetch('/api/color-zones/map?centerLat=' + self.centerLat() + '&centerLng=' + self.centerLng() + '&zoom=' + self.zoom() + '&width=' + options.width + '&height=' + options.height)
     .then(function (response) {
       if (!response.ok) {
         console.error('Something went wrong trying to load the map image...');
@@ -118,13 +117,13 @@ var ColorZonesViewModel = function (renderer, timeZoneService, colorPicker) {
   }
 
   function getColorInterval(color, hours, minutes, seconds) {
-    var interval = colorPicker.colors()[color].interval;
+    var interval = self.colorPicker().colors()[color].interval;
     switch (interval) {
-      case colorPicker.hours:
+      case self.colorPicker().hours:
         return hours;
-      case colorPicker.minutes:
+      case self.colorPicker().minutes:
         return minutes;
-      case colorPicker.seconds:
+      case self.colorPicker().seconds:
         return seconds;
       default:
         console.warn('Could not find an interval for: ' + interval + '...');

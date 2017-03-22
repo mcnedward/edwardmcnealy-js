@@ -6,10 +6,20 @@ angular.module('mcnedward')
   var renderer;
 
   $(document).ready(function () {
-    renderer = new Renderer();
-    var timeZoneService = new TimeZoneService(renderer.width());
+    const width = 1200, height = 700;
+    renderer = new Renderer({
+      width: width,
+      height: height
+    });
+    var timeZoneService = new TimeZoneService(renderer.width);
     var colorPicker = new ColorPicker();
-    var model = new ColorZonesViewModel(renderer, timeZoneService, colorPicker);
+    var model = new ColorZonesViewModel({
+      renderer: renderer, 
+      timeZoneService: timeZoneService,
+      colorPicker: colorPicker,
+      width: width,
+      height: height
+    });
     // Figure out why I need this override here...
     ko.options.useOnlyNativeEvents = true;
     ko.applyBindings(model, $('#main')[0]);

@@ -1,6 +1,6 @@
 angular.module('mcnedward')
-.controller('ApodCtrl', ['$rootScope', '$scope',
-	function ApodCtrl($rootScope, $scope) {
+.controller('ApodCtrl', [
+	function ApodCtrl() {
   'use strict';
 
   $(document).ready(function () {
