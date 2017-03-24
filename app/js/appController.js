@@ -14,7 +14,7 @@ angular.module('mcnedward')
       } else {
         adjustScroll(fromState.name);
       }
-      if (fromState.name === 'colorZones') {
+      if (fromState.name === 'colorZones' || fromState.name === 'solar-system') {
         // The color zones need to stop rendering since we're no longer on that page
         $rootScope.$broadcast('stopRendering');
       }

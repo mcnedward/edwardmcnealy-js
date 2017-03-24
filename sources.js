@@ -64,6 +64,10 @@ module.exports = function (env) {
       path: getPath('apod.min.js', 'js', env)
     },
     {
+      url: '/js/solar-system',
+      path: getPath('solar-system.min.js', 'js', env)
+    },
+    {
       url: '/js/utils',
       path: getPath('utils.min.js', 'js', env)
     },

@@ -36,7 +36,7 @@ var app = angular.module('mcnedward', ['ui.router', 'ui.bootstrap', 'ngAnimate',
     })
     .state('solar-system', {
       url: '/solar-system/',
-      templateUrl: 'solar-system/solar-system.html',
+      templateUrl: 'solar-system/solarSystem.html',
       controller: 'SolarSystemCtrl',
       title: 'Solar System'
     })

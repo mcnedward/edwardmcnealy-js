@@ -36,15 +36,25 @@ gulp.task('build-scripts', ['clean-script-rev'], function () {
     'app/js/**/*.js',
     '!app/js/colorZones/**/!(colorZonesController)*.js',
     '!app/js/apod/**/!(apodController)*.js',
-    '!app/js/utils/utils.js'
+    '!app/js/solar-system/**/!(solarSystemController|optionsCardDirective)*.js',
+    '!app/js/utils/utils.js',
+    '!app/js/utils/renderer.js'
   ], 'app.min.js');
   // Build scripts for utils
-  buildScripts('app/js/utils/utils.js', 'utils.min.js')
+  buildScripts('app/js/utils/utils.js', 'utils.min.js');
+  // Build scripts for renderer
+  buildScripts('app/js/utils/renderer.js', 'renderer.min.js');
   // Build scripts for APOD
   buildScripts([
     'app/js/apod/**/*.js',
     '!app/js/apod/apodController.js'
   ], 'apod.min.js')
+  // Build scripts for Solar System
+  buildScripts([
+    'app/js/solar-system/**/*.js',
+    '!app/js/solar-system/solarSystemController.js',
+    '!app/js/solar-system/optionsCardDirective.js'
+  ], 'solar-system.min.js')
   // Build scripts for Color Zones
   return buildScripts([
     'app/js/colorZones/**/*.js',

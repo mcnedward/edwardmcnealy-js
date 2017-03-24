@@ -1,0 +1,31 @@
+<script src="/js/knockout"></script>
+<script src="/js/renderer"></script>
+<script src="/js/utils"></script>
+<script src="/js/solar-system"></script>
+
+<div id="main">
+  <div class="row">
+    <div class="col-xs-12 col-md-8" id="canvasContainer">
+      <canvas id="theCanvas"></canvas>
+    </div>
+    <div class="col-xs-12 col-md-4">
+      <div data-bind="with: sunOptions">
+        <options-card type="sun" title="Sun Options"></options-card>
+      </div>
+      <div data-bind="with: planetOptions">
+        <options-card type="planet" title="Planet Options"></options-card>
+      </div>
+      <div data-bind="with: moonOptions">
+        <options-card type="moon" title="Moon Options"></options-card>
+      </div>
+      <div class="row mb-1">
+        <div class="col">
+          <button class="btn btn-success btn-block mt-1" data-bind="click: generateSolarSystem">GENERATE</button>
+        </div>
+        <div class="col">
+          <button class="btn btn-warning btn-block mt-1" data-bind="click: resetToDefault">RESET</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

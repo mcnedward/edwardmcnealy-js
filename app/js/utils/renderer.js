@@ -16,14 +16,14 @@ function Renderer(options) {
   self.originY = 0;
 
   var fixedSize = false;
-  if (options.width && options.height) {
+  if (options && options.width && options.height) {
     // If the width and height are defined, use a fixed size
     fixedSize = true;
     self.width = options.width;
     self.height = options.height;
   } else {
     self.width = canvasContainer.width();
-    self.height = window.innerHeight;
+    self.height = windowHeight();
   }
 
   resizeCanvas();
@@ -38,7 +38,8 @@ function Renderer(options) {
 
       self.originX = -(self.width / 2);
       self.originY = -(self.height / 2);
-      // context.translate(self.width / 2, self.height / 2);
+      if (!fixedSize)
+        context.translate(self.width / 2, self.height / 2);
 
       // Clear the canvas each frame
       clear();
@@ -143,10 +144,10 @@ function Renderer(options) {
       canvas.height = self.height;
     } else {
       canvas.width = canvasContainer.width();
-      canvas.height = window.innerHeight;
+      canvas.height = windowHeight();
 
       self.width = canvasContainer.width();
-      self.height = window.innerHeight;
+      self.height = windowHeight();
     }
   }
 
@@ -188,5 +189,9 @@ function Renderer(options) {
   function clear() {
     context.fillStyle = self.backgroundColor;
     context.fillRect(self.originX, self.originY, self.width, self.height);
+  }
+
+  function windowHeight() {
+    return window.innerHeight - 120;
   }
 }
