@@ -23,7 +23,7 @@ function AstroPicOfDay(service) {
       var leftDate = moment(left.date);
       var rightDate = moment(right.date);
       return leftDate.isSame(rightDate) ? 0 : (leftDate.isAfter(rightDate) ? 1 : -1);
-    })
+    });
 
     var cols = [];
     for (var i = 1; i <= apods.length; i++) {
@@ -45,7 +45,7 @@ function AstroPicOfDay(service) {
         trigger: 'focus',
         container: 'body'
       });
-    }, 500)
+    }, 500);
   }
 
   function loadImages() {
@@ -56,7 +56,7 @@ function AstroPicOfDay(service) {
     for (var i = 0; i <= self.loadCount(); i++) {
       var requestDate = fromDate.format(dateFormat);
       service.getApod(requestDate, successCallback, errorCallback);
-      fromDate.add(1, 'd')
+      fromDate.add(1, 'd');
     }
   }
   loadImages();
@@ -67,7 +67,7 @@ function AstroPicOfDay(service) {
       // All images should be ready (might need to update this, in case some of the images could not be loaded)
       layoutImages(self.apods());
     }
-  })
+  });
 
   var rawFromDate;
   // Validate the fromDate
@@ -91,7 +91,7 @@ function AstroPicOfDay(service) {
     }
     if (rawFromDate) {
       // Don't load images if this is the first time
-      loadImages()
+      loadImages();
     }
     rawFromDate = moment(self.fromDate.peek());
   });
@@ -117,7 +117,7 @@ function AstroPicOfDay(service) {
     }
     if (rawToDate) {
       // Don't load images if this is the first time
-      loadImages()
+      loadImages();
     }
     rawToDate = moment(self.toDate.peek());
   });
@@ -134,5 +134,5 @@ function AstroPicOfDay(service) {
   }
   self.closeAlertError = () => {
     alertError.fadeOut('slow');
-  }
+  };
 }

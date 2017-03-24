@@ -38,10 +38,13 @@ gulp.task('build-scripts', ['clean-script-rev'], function () {
     '!app/js/apod/**/!(apodController)*.js',
     '!app/js/solar-system/**/!(solarSystemController|optionsCardDirective)*.js',
     '!app/js/utils/utils.js',
+    '!app/js/utils/ko-extensions.js',
     '!app/js/utils/renderer.js'
   ], 'app.min.js');
   // Build scripts for utils
   buildScripts('app/js/utils/utils.js', 'utils.min.js');
+  // Build scripts for ko-extensions
+  buildScripts('app/js/utils/ko-extensions.js', 'ko-extensions.min.js');
   // Build scripts for renderer
   buildScripts('app/js/utils/renderer.js', 'renderer.min.js');
   // Build scripts for APOD

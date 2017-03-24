@@ -14,7 +14,7 @@ function AstroService() {
       return;
     }
     requestApod(apodDate, callback, errCallback);
-  }
+  };
 
   function requestApod(apodDate, callback, errCallback) {
     fetch('/api/apod?date=' + apodDate).then((response) => {

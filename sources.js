@@ -50,6 +50,10 @@ module.exports = function (env) {
       url: '/css/font-awesome',
       path: path.join(__dirname, 'public', 'css', 'font-awesome.min.css')
     },
+    {
+      url: '/css/bootstrap-datetimepicker',
+      path: path.join(__dirname, 'public', 'css', 'bootstrap-datetimepicker.min.css')
+    },
     // My app
     {
       url: '/js/app',
@@ -74,6 +78,10 @@ module.exports = function (env) {
     {
       url: '/js/renderer',
       path: getPath('renderer.min.js', 'js', env)
+    },
+    {
+      url: '/js/ko-extensions',
+      path: getPath('ko-extensions.min.js', 'js', env)
     },
     // My styles, fonts, and images
     {

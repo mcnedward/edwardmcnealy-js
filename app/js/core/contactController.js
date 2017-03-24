@@ -21,10 +21,10 @@ angular.module('mcnedward')
 
   $scope.portfolioMouseOver = () => {
     $scope.shouldFade = true;
-  }
+  };
   $scope.portfolioMouseLeave = () => {
     $scope.shouldFade = false;
-  }
+  };
 	
 	$scope.submitContact = function(form, contactInfo) {
 		if ($scope.isFormSubmitted) return;

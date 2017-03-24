@@ -46,19 +46,19 @@ function Orbital(parent, options) {
         child.createChildren(orbitalOptions);
       }
     }
-  }
+  };
 
   self.setPosition = function(x, y) {
     self.x = x;
     self.y = y;
-  }
+  };
   self.setName = function(name) {
     self.name = name;
-  }
+  };
 
   self.update = () => {
     angle += speed;
-  }
+  };
 
   self.render = (renderer, parent) => {
     var x, y;
@@ -69,5 +69,5 @@ function Orbital(parent, options) {
     }
 
     renderer.ellipse(self.x, self.y, self.radius, self.color);
-  }
+  };
 }

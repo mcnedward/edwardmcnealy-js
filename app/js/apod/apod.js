@@ -16,5 +16,5 @@ function Apod(data) {
     url: self.url,
     mediaType: self.mediaType,
     titleAndDate: self.title + ' (' + self.date + ')'
-  }
+  };
 }

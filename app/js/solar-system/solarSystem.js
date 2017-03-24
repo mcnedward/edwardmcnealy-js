@@ -33,7 +33,7 @@ function SolarSystem(renderer) {
     self.sunOptions().save();
     self.planetOptions().save();
     self.moonOptions().save();
-  }
+  };
   self.generateSolarSystem();
 
   self.resetToDefault = () => {
@@ -41,7 +41,7 @@ function SolarSystem(renderer) {
     self.planetOptions().save(true);
     self.moonOptions().save(true);
     self.generateSolarSystem();
-  }
+  };
 
   renderer.render(() => {
     renderStars();

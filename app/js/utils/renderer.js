@@ -54,7 +54,7 @@ function Renderer(options) {
 
     } catch (e) {
       // Swallowing exeptions till I figure a better way to report them
-      console.error(e)
+      console.error(e);
     }
   }
   render();
@@ -70,7 +70,7 @@ function Renderer(options) {
   self.polygon = (points, color, alpha) => {
     var polygonPoints = points.slice(0);  // Need a copy of the points here
     context.beginPath();
-    color = convertHex(color, alpha)
+    color = convertHex(color, alpha);
     context.fillStyle = color;
 
     var firstPoint = polygonPoints[0];
